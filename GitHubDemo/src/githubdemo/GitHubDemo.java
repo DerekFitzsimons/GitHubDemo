@@ -7,7 +7,7 @@ package githubdemo;
 
 /**
  *
- * @author N.E.One
+ * @author N.E. One
  */
 public class GitHubDemo {
 
