@@ -1,7 +1,7 @@
 /*
-  =================================
+  ===================================
   (C) Advanced Computer Software 2015
-  =================================
+  ===================================
  */
 package githubdemo;
 
@@ -10,6 +10,10 @@ package githubdemo;
  * @author N.E. One
  */
 public class GitHubDemo {
+
+    public GitHubDemo() {
+        super();
+    }
 
     /**
      * @param args the command line arguments
