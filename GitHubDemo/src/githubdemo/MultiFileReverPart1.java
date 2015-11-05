@@ -11,4 +11,8 @@ package githubdemo;
  */
 public class MultiFileReverPart1 {
 
+    public MultiFileReverPart1() {
+        super();
+    }
+
 }
