@@ -10,9 +10,5 @@ package githubdemo;
  * @author derek.fitzsimons
  */
 public class MultiFileReverPart1 {
-
-    public MultiFileReverPart1() {
-        super();
-    }
-
+    // This file reverted to previous state
 }
