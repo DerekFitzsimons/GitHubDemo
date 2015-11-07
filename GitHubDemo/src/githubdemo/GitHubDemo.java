@@ -27,6 +27,7 @@ public class GitHubDemo {
      * @param args the command line arguments
      */
     public static void main( String[] args ) {
+        // This comment added using proper author name
         LOGGER.log(Level.INFO, "Hello from Ubuntu");
     }
 
