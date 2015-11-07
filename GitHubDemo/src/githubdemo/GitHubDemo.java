@@ -19,6 +19,9 @@ public class GitHubDemo {
      */
     private static final Logger LOGGER = Logger.getLogger( GitHubDemo.class.getName() );
 
+    /**
+     *
+     */
     public GitHubDemo() {
         super();
     }

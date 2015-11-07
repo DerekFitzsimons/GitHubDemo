@@ -11,4 +11,11 @@ package githubdemo.util;
  */
 public class Util {
 
+    /**
+     *
+     */
+    public Util() {
+        super();
+    }
+
 }
