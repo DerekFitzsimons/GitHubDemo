@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/spring">
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/spring" password="Pridepark01*" type="javax.sql.DataSource" url="jdbc:mysql://192.168.1.10:3306/springtutorial?autoReconnect=true&amp;useSSL=false" username="derekfitzsimons"/>
+</Context>

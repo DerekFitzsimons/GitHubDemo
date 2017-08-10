@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-Aug-2017, 10:10:14
+    Author     : Derek
+*/
+
+
+.formtable {
+    padding: 10px;
+    border: 1px solid blue;
+    width:400px;
+}
+
+input[type="text"]{
+    width:250px;
+}
+
+textarea{
+    width:250px;
+    height:250px;
+}
+
+.label{
+    text-align:right;
+    vertical-align:top;
+}
+
+.control{
+    margin-left:10px;
+}
+
+.error{
+    margin-left:10px;
+    color:red;
+    font-size: smaller;
+}
