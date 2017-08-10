@@ -5,11 +5,11 @@ import com.caveofprogramming.spring.web.service.OffersService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class OffersController {
@@ -21,8 +21,10 @@ public class OffersController {
         this.offersService = offersService;
     }
 
-    @RequestMapping("/offers")
+    @RequestMapping( "/offers" )
     public String showOffers( Model model ) {
+
+//        offersService.throwTestException();
 
         List<Offer> offers = offersService.getCurrent();
         model.addAttribute( "offers", offers );
@@ -30,20 +32,20 @@ public class OffersController {
         return "offers";
     }
 
-    @RequestMapping("/createOffer")
+    @RequestMapping( "/createOffer" )
     public String createOffer( Model model ) {
         model.addAttribute( "offer", new Offer() );
         return "createOffer";
     }
 
-    @RequestMapping(value = "/doCreate", method = RequestMethod.POST)
+    @RequestMapping( value = "/doCreate", method = RequestMethod.POST )
     public String doCreate( Model model, @Valid Offer offer, BindingResult result ) {
         String output;
         System.out.println( offer );
-        if ( !result.hasErrors() ) {
+        if( !result.hasErrors() ) {
             output = "offerCreated";
-            
-            offersService.createOffer(offer);
+
+            offersService.createOffer( offer );
         } else {
             output = "createOffer";
         }
@@ -51,4 +53,10 @@ public class OffersController {
         return output;
     }
 
+    /*
+    @ExceptionHandler( DataAccessException.class )
+    public String handleDatabaseException( DataAccessException ex ) {
+        return "error";
+    }
+    */
 }
