@@ -17,13 +17,13 @@
                 <th>Email</th>
                 <th>Offer</th>
             </tr>
-        <c:forEach var="offer" items="${offers}">
-            <tr>
-                <td>${offer.name}</td>
-                <td>${offer.email}</td>
-                <td>${offer.text}</td>
-            </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="offer" items="${offers}">
+                <tr>
+                    <td>${offer.name}</td>
+                    <td>${offer.email}</td>
+                    <td>${offer.text}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </body>
 </html>

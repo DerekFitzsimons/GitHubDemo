@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Error</h1>
-        
+
         <p>An unforseen error has occurred.</p>
     </body>
 </html>

@@ -17,23 +17,23 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component("offersDao")
+@Component( "offersDao" )
 public class OffersDAO {
 
     /**
      * Logger
      */
     private static final Logger LOGGER = Logger.getLogger( OffersDAO.class.getName() );
-            
-    private NamedParameterJdbcTemplate jdbc;   
-    
+
+    private NamedParameterJdbcTemplate jdbc;
+
     @Autowired
     public void setDataSource( DataSource jdbc ) {
-        LOGGER.info( "Setting datasource");
+        LOGGER.info( "Setting datasource" );
         this.jdbc = new NamedParameterJdbcTemplate( jdbc );
     }
 
-    @SuppressWarnings("Convert2Lambda")
+    @SuppressWarnings( "Convert2Lambda" )
     public List<Offer> getOffers() {
         List<Offer> output = jdbc.query( "select * from OFFERS", new RowMapper<Offer>() {
 
@@ -50,14 +50,15 @@ public class OffersDAO {
             }
 
         } );
-        
-        LOGGER.info( "Getting offers");
+
+        LOGGER.info( "Getting offers" );
         return output;
     }
 
     public boolean update( Offer offer ) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
-        boolean output = jdbc.update( "update OFFERS set name=:name, text=:text, email=:email where id=:id", params ) == 1;
+        boolean output
+                = jdbc.update( "update OFFERS set name=:name, text=:text, email=:email where id=:id", params ) == 1;
         LOGGER.info( "Update offer" );
         return output;
     }
@@ -66,10 +67,11 @@ public class OffersDAO {
 
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
 
-        boolean output =jdbc.update( "insert into OFFERS (name, text, email) values (:name, :text, :email)", params ) == 1;
-        LOGGER.info( "Create offer");
+        boolean output
+                = jdbc.update( "insert into OFFERS (name, text, email) values (:name, :text, :email)", params ) == 1;
+        LOGGER.info( "Create offer" );
         return output;
-        
+
     }
 
     @Transactional
@@ -77,8 +79,9 @@ public class OffersDAO {
 
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch( offers.toArray() );
 
-        System.out.println( "Create offers");
-        return jdbc.batchUpdate( "insert into OFFERS (id, name, text, email) values (:id, :name, :text, :email)", params );
+        System.out.println( "Create offers" );
+        return jdbc.
+                batchUpdate( "insert into OFFERS (id, name, text, email) values (:id, :name, :text, :email)", params );
     }
 
     public boolean delete( int id ) {
@@ -87,7 +90,7 @@ public class OffersDAO {
         return jdbc.update( "delete from OFFERS where id=:id", params ) == 1;
     }
 
-    @SuppressWarnings("Convert2Lambda")
+    @SuppressWarnings( "Convert2Lambda" )
     public Offer getOffer( int id ) {
 
         MapSqlParameterSource params = new MapSqlParameterSource();

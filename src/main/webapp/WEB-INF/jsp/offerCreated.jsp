@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Offer Created</h1>
-        
+
         Offer Created: <a href="${pageContext.request.contextPath}/offers">Click here to view current offers</a><br/><br/>
     </body>
 </html>

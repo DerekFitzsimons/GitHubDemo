@@ -9,7 +9,6 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.apache.commons.validator.routines.EmailValidator;
 
-
 /**
  *
  * @author Derek
@@ -27,12 +26,12 @@ public class ValidEmailImpl implements ConstraintValidator<ValidEmail, String> {
     @Override
     public boolean isValid( String email, ConstraintValidatorContext context ) {
         boolean output = true;
-        EmailValidator validator = EmailValidator.getInstance(false);
-        if(email.length()< min){
+        EmailValidator validator = EmailValidator.getInstance( false );
+        if( email.length() < min ) {
             output = false;
-        }else if(!validator.isValid( email)){
-            output =false;
-            
+        } else if( !validator.isValid( email ) ) {
+            output = false;
+
         }
         return output;
     }

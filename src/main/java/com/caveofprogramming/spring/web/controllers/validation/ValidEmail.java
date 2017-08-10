@@ -35,10 +35,10 @@ import javax.validation.Payload;
  *
  * @author Derek
  */
-@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
-@Retention(RUNTIME)
+@Target( { METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE } )
+@Retention( RUNTIME )
 @Documented
-@Constraint(validatedBy = com.caveofprogramming.spring.web.controllers.validation.ValidEmailImpl.class)
+@Constraint( validatedBy = com.caveofprogramming.spring.web.controllers.validation.ValidEmailImpl.class )
 public @interface ValidEmail {
 
     String message() default "This does not appear to be a valid email address";

@@ -25,7 +25,6 @@ public class OffersController {
     public String showOffers( Model model ) {
 
 //        offersService.throwTestException();
-
         List<Offer> offers = offersService.getCurrent();
         model.addAttribute( "offers", offers );
 
@@ -58,5 +57,5 @@ public class OffersController {
     public String handleDatabaseException( DataAccessException ex ) {
         return "error";
     }
-    */
+     */
 }
