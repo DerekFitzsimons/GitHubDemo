@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:sec="http://www.springframework.org/schema/security"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/security
-		http://www.springframework.org/schema/security/spring-security.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <sec:authentication-manager>
-        <sec:authentication-provider>
-            <sec:user-service>
-                <sec:user name="derek" authorities="admin" password="derek"/>
-                <sec:user name="zog" authorities="admin" password="iamzog"/>
-            </sec:user-service>
-        </sec:authentication-provider>
-    </sec:authentication-manager>
-    <sec:http use-expressions="true">
-        <sec:intercept-url pattern="/createoffer" access="isAuthenticated()"/>
-        <sec:intercept-url pattern="/doCreate" access="isAuthenticated()"/>
-        <sec:intercept-url pattern="/offerCreated" access="isAuthenticated()"/>
-        <sec:intercept-url pattern="/" access="permitAll"/>
-        <sec:intercept-url pattern="/home" access="permitAll"/>
-        <sec:intercept-url pattern="/offers" access="permitAll"/>
 
-        <sec:intercept-url pattern="/**" access="denyAll"/>
-        <sec:form-login/>
-    </sec:http>
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:user-service>
+				<sec:user name="John" authorities="admin" password="letmein" />
+				<sec:user name="Zog" authorities="admin" password="iamzog" />
+			</sec:user-service>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	
+	
+	<sec:http use-expressions="true">
+		<sec:intercept-url pattern="/createOffer" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/doCreate" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/offerCreated" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/" access="permitAll" />
+		<sec:intercept-url pattern="/home" access="permitAll" />
+		<sec:intercept-url pattern="/offers" access="permitAll" />
+		<sec:intercept-url pattern="/**" access="denyAll" />
+		<sec:form-login />
+	</sec:http>
 </beans>
+
