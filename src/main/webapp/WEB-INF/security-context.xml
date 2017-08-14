@@ -16,13 +16,9 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
     <sec:http use-expressions="true">
-        <sec:intercept-url pattern="/createoffer" access="isAuthenticated()"/>
-        <sec:intercept-url pattern="/doCreate" access="isAuthenticated()"/>
-        <sec:intercept-url pattern="/offerCreated" access="isAuthenticated()"/>
+        
         <sec:intercept-url pattern="/" access="permitAll"/>
-        <sec:intercept-url pattern="/home" access="permitAll"/>
         <sec:intercept-url pattern="/offers" access="permitAll"/>
-
         <sec:intercept-url pattern="/**" access="denyAll"/>
         <sec:form-login/>
     </sec:http>
