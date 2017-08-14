@@ -3,7 +3,7 @@
     <display-name>spring-tutorial-50</display-name>
     <!--
     <welcome-file-list>
-       
+
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
@@ -32,6 +32,7 @@
         <res-auth>Container</res-auth>
     </resource-ref>
     <filter>
+        <display-name>springSecurityFilterChain</display-name>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
@@ -47,7 +48,7 @@
         <param-value>
             WEB-INF/classes/com/caveofprogramming/spring/web/config/dao-context.xml
             WEB-INF/classes/com/caveofprogramming/spring/web/config/service-context.xml
-            WEB-INF/classes/com/caveofprogramming/spring/web/config/security-context.xml            
+            WEB-INF/classes/com/caveofprogramming/spring/web/config/security-config.xml
         </param-value>
     </context-param>
 </web-app>
