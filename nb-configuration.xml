@@ -19,10 +19,10 @@
     </properties>
     <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
         <config-files>
-            <config-file>src/main/resources/com/caveofprogramming/spring/web/config/dao-context.xml</config-file>
             <config-file>src/main/webapp/WEB-INF/offers-servlet.xml</config-file>
-            <config-file>src/main/resources/com/caveofprogramming/spring/web/config/service-context.xml</config-file>
             <config-file>src/main/resources/com/caveofprogramming/spring/web/config/security-config.xml</config-file>
+            <config-file>src/main/resources/com/caveofprogramming/spring/web/config/dao-context.xml</config-file>            
+            <config-file>src/main/resources/com/caveofprogramming/spring/web/config/service-context.xml</config-file>
         </config-files>
         <config-file-groups/>
     </spring-data>
