@@ -26,7 +26,7 @@
         <sec:intercept-url pattern="/login" access="permitAll" />
         <sec:intercept-url pattern="/offers" access="permitAll" />
         <sec:intercept-url pattern="/**" access="denyAll" />
-        <sec:form-login login-page="/login"/>
+        <sec:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
     </sec:http>
 </beans>
 
