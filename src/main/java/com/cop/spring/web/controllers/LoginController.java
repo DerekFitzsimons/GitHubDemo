@@ -52,7 +52,7 @@ public class LoginController {
             user.setAuthority( "user");
             usersService.create( user );
         } else {
-            output = "newAccount";
+            output = "createAccount";
         }
 
         return output;
