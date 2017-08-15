@@ -36,6 +36,8 @@
                 <input class="fullButton" name="submit" type="submit" value="Login"/>
 
             </form>
+                
+                <p>create new Account <a href='<c:url value="/newAccount"/>'>Here</a></p>
         </div>
     </body>
 </html>
