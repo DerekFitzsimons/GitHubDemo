@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td><input type="submit" value="Create Offer" class="control"/></td>
+                    <td><input type="submit" value="Create Account" class="control"/></td>
                 </tr>
             </table>
         </sf:form>
