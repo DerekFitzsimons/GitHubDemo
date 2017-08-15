@@ -1,7 +1,7 @@
-package com.caveofprogramming.spring.web.controllers;
+package com.cop.spring.web.controllers;
 
-import com.caveofprogramming.spring.web.dao.Offer;
-import com.caveofprogramming.spring.web.service.OffersService;
+import com.cop.spring.web.dao.Offer;
+import com.cop.spring.web.service.OffersService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

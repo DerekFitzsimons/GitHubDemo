@@ -1,4 +1,4 @@
-package com.caveofprogramming.spring.web.dao;
+package com.cop.spring.web.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
