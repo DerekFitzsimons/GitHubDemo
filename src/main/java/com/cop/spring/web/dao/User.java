@@ -15,20 +15,20 @@ public class User {
 
     private String authority;
     
-    @NotBlank(message="Email must not be blank")
+    @NotBlank()
     @Email
     private String email;
 
     private boolean enabled = false;
 
-    @NotBlank(message="Password can not be blank.")
-    @Pattern(regexp="^\\S+$",message="Password must not have spaces.")
-    @Size(min=3,max=8,message="Password must be between 3 and 8 characters.")
+    @NotBlank()
+    @Pattern(regexp="^\\S+$")
+    @Size(min=3,max=8)
     private String password;
 
-    @NotBlank(message="Username can not be blank.")
-    @Size(min=1, max=15, message="Username must be between 1 and 15 characters long.")
-    @Pattern(regexp="^\\w{1,}$", message="Username can only consist of numbers, letters and the underscore character.")
+    @NotBlank()
+    @Size(min=1, max=15)
+    @Pattern(regexp="^\\w{1,}$")
     private String username;
     
 

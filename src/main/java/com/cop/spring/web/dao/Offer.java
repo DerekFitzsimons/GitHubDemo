@@ -8,15 +8,15 @@ public class Offer {
 
     private int id;
 
-    @Size( min = 3, max = 100, message = "Name must be between 3 and 100 characters" )
+    @Size( min = 3, max = 100 )
     private String name;
 
     @NotNull
-    //@Pattern(regexp = ".*\\@.*\\..*", message = "This does not appear to be a valid email address")
-    @ValidEmail( min = 6, message = "This email address is not valid" )
+    //@Pattern(regexp = ".*\\@.*\\..*")
+    @ValidEmail( min = 6)
     private String email;
 
-    @Size( min = 20, max = 255, message = "Offer must be between 20 and 255 characters" )
+    @Size( min = 20, max = 255 )
     private String text;
 
     public Offer() {
