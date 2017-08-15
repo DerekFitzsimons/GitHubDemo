@@ -1,6 +1,6 @@
-package com.caveofprogramming.spring.web.dao;
+package com.cop.spring.web.dao;
 
-import com.caveofprogramming.spring.web.controllers.validation.ValidEmail;
+import com.cop.spring.web.controllers.validation.ValidEmail;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

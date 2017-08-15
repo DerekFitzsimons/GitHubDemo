@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.caveofprogramming.spring.web.controllers.validation;
+package com.cop.spring.web.controllers.validation;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
@@ -38,7 +38,7 @@ import javax.validation.Payload;
 @Target( { METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE } )
 @Retention( RUNTIME )
 @Documented
-@Constraint( validatedBy = com.caveofprogramming.spring.web.controllers.validation.ValidEmailImpl.class )
+@Constraint( validatedBy = com.cop.spring.web.controllers.validation.ValidEmailImpl.class )
 public @interface ValidEmail {
 
     String message() default "This does not appear to be a valid email address";
