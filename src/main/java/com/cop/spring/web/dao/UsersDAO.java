@@ -5,8 +5,7 @@ import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +18,15 @@ public class UsersDAO {
     private static final Logger LOGGER = Logger.getLogger(UsersDAO.class.getName() );
 
     private NamedParameterJdbcTemplate jdbc;
+
+    public boolean exists( String username ) {
+        
+        String sql = "select count(*) from users where username=:username";
+        
+        return jdbc.queryForObject( sql,new MapSqlParameterSource("username",username), Integer.class ) > 0;
+        
+ 
+    }
 
     @Autowired
     public void setDataSource( DataSource jdbc ) {
@@ -37,7 +45,7 @@ public class UsersDAO {
         jdbc.update( sql1, params );
         LOGGER.info( "Creating user" );
         boolean output = jdbc.update( sql2, params ) == 1;
-        LOGGER.info( "Creatin authority" );
+        LOGGER.info( "Creating authority" );
         return output;
 
     }

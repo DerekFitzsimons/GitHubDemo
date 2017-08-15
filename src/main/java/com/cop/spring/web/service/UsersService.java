@@ -19,6 +19,10 @@ public class UsersService {
 
     private UsersDAO usersDao;
 
+    public boolean exists( String username ) {
+        return usersDao.exists(username);
+    }
+
     @Autowired
     public void setOffersDao( UsersDAO offersDao ) {
         this.usersDao = offersDao;

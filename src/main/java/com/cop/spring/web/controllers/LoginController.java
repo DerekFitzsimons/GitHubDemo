@@ -5,11 +5,13 @@
  */
 package com.cop.spring.web.controllers;
 
-import com.cop.spring.web.dao.Offer;
 import com.cop.spring.web.dao.User;
 import com.cop.spring.web.service.UsersService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class LoginController {
+
+    /**
+     * Logger
+     */
+    private static final Logger LOGGER = Logger.getLogger( LoginController.class.getName() );
 
     private UsersService usersService;
 
@@ -49,8 +56,24 @@ public class LoginController {
         if( !result.hasErrors() ) {
             output = "accountCreated";
             user.setEnabled( true );
-            user.setAuthority( "user");
-            usersService.create( user );
+            user.setAuthority( "user" );
+
+            if( usersService.exists( user.getUsername() ) ) {
+                result.rejectValue( "username", "DuplicateKey.user.username", "This username already exists." );
+                output = "createAccount";             
+                
+            }else {
+                usersService.create( user );
+            }
+
+//            try {
+//                usersService.create( user );
+//            } catch( DuplicateKeyException ex ) {
+//                LOGGER.log( Level.SEVERE, "Duplicate Key" );
+//                result.rejectValue( "username", "DuplicateKey.user.username", "This username already exists." );
+//                output = "createAccount";
+//            }
+
         } else {
             output = "createAccount";
         }
