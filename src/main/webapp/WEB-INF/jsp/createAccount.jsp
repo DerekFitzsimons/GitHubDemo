@@ -12,11 +12,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Account</title>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
-
+        <script type='application/javascript' src='${pageContext.request.contextPath}/static/js/jquery-3_2_1_min.js'></script>
+        <script type='application/javascript'>
+            
+            function onLoad(){
+                alert("Hello");
+            }
+            
+            $(document).ready( onLoad );
+        </script
+            
+            
     </head>
     <body>
         <h1>Create Account</h1>
-
+        
         <sf:form method="post" action="${pageContext.request.contextPath}/createAccount" commandName="user">
             <table class="formtable">
                 <tr>
