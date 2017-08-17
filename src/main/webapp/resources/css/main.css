@@ -39,6 +39,12 @@ textarea{
     font-size: smaller;
 }
 
+.valid{
+    margin-left:10px;
+    color:green;
+    font-size: smaller;
+}
+
 p.loginError{
     margin-left:10px;
     color:red;

@@ -15,19 +15,60 @@
         <script type='application/javascript' src='${pageContext.request.contextPath}/static/js/jquery-3_2_1_min.js'></script>
         <script type='application/javascript'>
             
-            function onLoad(){
-                alert("Hello");
+            function checkPasswordsMatch(){
+                var password = $('#password').val();
+                var confirmPassword = $('#confirmPassword').val();
+                
+                if(password.length > 2 || confirmPassword.length > 2){
+                    if(password != confirmPassword){
+                        $('#matchPass').addClass("error");
+                        $('#matchPass').removeClass("valid");
+                        $('#matchPass').text("Password entries must match");
+                    }else {
+                        $('#matchPass').text("Passwords match");
+                        $('#matchPass').removeClass("error");
+                        $('#matchPass').addClass("valid");
+                        
+                    }
+                }else {
+                    $('#matchPass').removeClass("error");
+                    $('#matchPass').removeClass("valid");
+                    $('#matchPass').text("");
+                }
             }
             
+            function validateForm(){
+                var size = $('password').val().length > 2;
+                var match = $('password').val() == $('#confirmPassword').val();
+                
+                var output = size && match;
+                
+                console.log("Size:"+size);
+                console.log("Match:"+match);
+                
+                if(!output){
+                    alert("Passwords do not match");
+                }
+                return output;
+            }
+            
+            
+            function onLoad(){
+                $('#password').keyup(checkPasswordsMatch);
+                $('#confirmPassword').keyup(checkPasswordsMatch);
+                
+                $('#details').submit( validateForm )
+            }
+            
+            
+            
             $(document).ready( onLoad );
-        </script
-            
-            
+        </script>           
     </head>
     <body>
         <h1>Create Account</h1>
-        
-        <sf:form method="post" action="${pageContext.request.contextPath}/createAccount" commandName="user">
+
+        <sf:form method="post" action="${pageContext.request.contextPath}/createAccount" id="details" commandName="user">
             <table class="formtable">
                 <tr>
                     <td class="label">Username</td>
@@ -46,14 +87,15 @@
                 <tr>
                     <td class="label">Password</td>
                     <td>
-                        <sf:input type="text" path="password" name="password" class="control"/><br/>
+                        <sf:input type="text" path="password" name="password" id="password" class="control"/><br/>
                         <sf:errors path="password" cssClass="error"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">Confirm Password</td>
                     <td>
-                        <input type="text" class="control" name="confirmPassword" class="control"/><br/>
+                        <input type="text" class="control" name="confirmPassword" id="confirmPassword" class="control"/><br/>
+                        <div id="matchPass" class="error"></div>
                     </td>
                 </tr>
                 <tr>
