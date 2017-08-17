@@ -4,8 +4,9 @@
     Author     : Derek
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,9 +24,9 @@
                     if(password != confirmPassword){
                         $('#matchPass').addClass("error");
                         $('#matchPass').removeClass("valid");
-                        $('#matchPass').text("Password entries must match");
+                        $('#matchPass').text('<fmt:message key="UnmatchedPasswords.user.password"/>');
                     }else {
-                        $('#matchPass').text("Passwords match");
+                        $('#matchPass').text('<fmt:message key="MatchedPasswords.user.password"/>');
                         $('#matchPass').removeClass("error");
                         $('#matchPass').addClass("valid");
                         
@@ -47,7 +48,7 @@
                 console.log("Match:"+match);
                 
                 if(!output){
-                    alert("Passwords do not match");
+                    alert('<fmt:message key="UnmatchedPasswords.user.password"/>');
                 }
                 return output;
             }
@@ -67,7 +68,7 @@
     </head>
     <body>
         <h1>Create Account</h1>
-
+        
         <sf:form method="post" action="${pageContext.request.contextPath}/createAccount" id="details" commandName="user">
             <table class="formtable">
                 <tr>
