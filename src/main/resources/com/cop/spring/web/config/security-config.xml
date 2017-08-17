@@ -23,10 +23,7 @@
 	
     <sec:http use-expressions="true">   
         
-        <!-- Roles -->
-        <sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-        
-        <!-- Authorities -->
+        <sec:intercept-url pattern="/createOffer" access="isAuthenticated()" />
         <sec:intercept-url pattern="/doCreate" access="isAuthenticated()" />
         <sec:intercept-url pattern="/offerCreated" access="isAuthenticated()" />
         <sec:intercept-url pattern="/" access="permitAll" />

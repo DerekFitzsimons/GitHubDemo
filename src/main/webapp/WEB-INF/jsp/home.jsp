@@ -7,7 +7,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; UTF-8">
         <title>Home Page</title>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
     </head>
     <body>
         <c:url value='/logout' var='logoutUrl'/>
@@ -15,7 +14,6 @@
 
         <p><a href="${pageContext.request.contextPath}/offers"> Show Current Offers</a></p>
         <p><a href="${pageContext.request.contextPath}/createOffer">Create new Offer</a></p>
-        <p><a href="${pageContext.request.contextPath}/admin">Administration</a></p>
         <form action="${logoutUrl}" method="post">	
 
             <input type="submit" value="Log out"/>
