@@ -5,6 +5,8 @@
  */
 package com.cop.spring.web.dao;
 
+import javax.validation.constraints.*;
+
 /**
  *
  * @author dfitzsimons
@@ -13,12 +15,20 @@ public class User {
 
     private String authority;
     
+    @NotBlank()
+    @Email
     private String email;
 
     private boolean enabled = false;
 
+    @NotBlank()
+    @Pattern(regexp="^\\S+$")
+    @Size(min=3,max=8)
     private String password;
 
+    @NotBlank()
+    @Size(min=1, max=15)
+    @Pattern(regexp="^\\w{1,}$")
     private String username;
     
 

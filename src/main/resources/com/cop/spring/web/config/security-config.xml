@@ -21,20 +21,30 @@
     </sec:authentication-manager>
 	
 	
-    <sec:http use-expressions="true">
-        <sec:intercept-url pattern="/createOffer" access="isAuthenticated()" />
+    <sec:http use-expressions="true">   
+        
+        <!-- Roles -->
+        <sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+        
+        <!-- Authorities -->
         <sec:intercept-url pattern="/doCreate" access="isAuthenticated()" />
         <sec:intercept-url pattern="/offerCreated" access="isAuthenticated()" />
         <sec:intercept-url pattern="/" access="permitAll" />
+        <sec:intercept-url pattern="/loggedout" access="permitAll" />
+
         <sec:intercept-url pattern="/static/**" access="permitAll" />
         <sec:intercept-url pattern="/home" access="permitAll" />
         <sec:intercept-url pattern="/login" access="permitAll" />
+
         <sec:intercept-url pattern="/offers" access="permitAll" />
         <sec:intercept-url pattern="/newAccount" access="permitAll" />
         <sec:intercept-url pattern="/createAccount" access="permitAll" />
         <sec:intercept-url pattern="/accountCreated" access="permitAll" />
-        <sec:intercept-url pattern="/**" access="denyAll" />
+        <sec:intercept-url pattern="/**" access="denyAll" />        
+       
         <sec:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
+        <sec:logout logout-url="/logout" logout-success-url="/loggedout" /> 
+       
     </sec:http>
 </beans>
 

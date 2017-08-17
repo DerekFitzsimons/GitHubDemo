@@ -10,10 +10,14 @@
     <context:component-scan base-package="com.cop.spring.web.controllers" />
     <mvc:annotation-driven></mvc:annotation-driven>
 
-    <mvc:resources mapping="/static/**" location="/resources/"></mvc:resources>
+    <mvc:resources mapping="/static/**" location="/resources/" />
     
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"></property>
         <property name="suffix" value=".jsp"></property>
+    </bean>
+    
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" >
+        <property name="basename" value="com.cop.spring.web.messages.messages" />
     </bean>
 </beans>
