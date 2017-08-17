@@ -14,6 +14,10 @@
 
         <p><a href="${pageContext.request.contextPath}/offers"> Show Current Offers</a></p>
         <p><a href="${pageContext.request.contextPath}/createOffer">Create new Offer</a></p>
-        <p><a href="${logoutUrl}">Log out</a></p>
+        <form action="${logoutUrl}" method="post">	
+
+            <input type="submit" value="Log out"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
+        </form>	
     </body>
 </html>

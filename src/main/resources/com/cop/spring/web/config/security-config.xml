@@ -40,7 +40,7 @@
         <sec:intercept-url pattern="/**" access="denyAll" />        
        
         <sec:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
-        <sec:logout logout-url="/logout" logout-success-url="/loggedout" invalidate-session="true" delete-cookies="JSESSIONID"/> 
+        <sec:logout logout-url="/logout" logout-success-url="/loggedout" /> 
        
     </sec:http>
 </beans>
