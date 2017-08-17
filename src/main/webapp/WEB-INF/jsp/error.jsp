@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Error Page</title>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
     </head>
     <body>
