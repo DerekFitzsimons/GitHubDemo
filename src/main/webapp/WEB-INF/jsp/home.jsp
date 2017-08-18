@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-­ default header name is X-­‐CSRF-­‐TOKEN ­‐>	
+        <!-­ default header name is X-CSRF-TOKEN ­‐>	
         <meta name="_csrf_header" content="${_csrf.headerName}"/>	
   
         <title>Home Page</title>
