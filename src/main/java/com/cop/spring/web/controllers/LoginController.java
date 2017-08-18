@@ -7,6 +7,7 @@ package com.cop.spring.web.controllers;
 
 import com.cop.spring.web.dao.User;
 import com.cop.spring.web.service.UsersService;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,17 @@ public class LoginController {
         }
 
         return output;
+    }
+    
+        
+    @RequestMapping( "/admin" )
+    public String showAdmin( Model model ) {
+        
+        List<User>users = usersService.getAllUsers();
+        
+        model.addAttribute("users",users);
+        
+        return "admin";
     }
 
 }

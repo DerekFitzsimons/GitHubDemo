@@ -20,9 +20,5 @@ public class HomeController {
     public String showHome( Model model ) {
         return "home";
     }
-    
-    @RequestMapping( "/admin" )
-    public String showAdmin( Model model ) {
-        return "admin";
-    }
+
 }

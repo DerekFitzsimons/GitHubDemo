@@ -1,10 +1,12 @@
 package com.cop.spring.web.dao;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,11 @@ public class UsersDAO {
         return jdbc.queryForObject( sql,new MapSqlParameterSource("username",username), Integer.class ) > 0;
         
  
+    }
+
+    public List<User> getAllUsers() {
+        String sql ="select * from users, authorities where users.username = authorities.username";
+        return jdbc.query( sql, BeanPropertyRowMapper.newInstance( User.class) );
     }
 
     @Autowired
