@@ -26,11 +26,13 @@
     <sec:http use-expressions="true">   
         
         <!-- Roles -->
+        <!--<sec:intercept-url pattern="/admin" access="permitAll" />-->
         <sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
         
         <!-- Authorities -->
         <sec:intercept-url pattern="/doCreate" access="isAuthenticated()" />
         <sec:intercept-url pattern="/offerCreated" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/createOffer" access="isAuthenticated()" />
         <sec:intercept-url pattern="/" access="permitAll" />
         <sec:intercept-url pattern="/loggedout" access="permitAll" />
 
@@ -48,5 +50,6 @@
         <sec:logout logout-url="/logout" logout-success-url="/loggedout" /> 
        
     </sec:http>
+    <sec:global-method-security secured-annotations="enabled"/>
 </beans>
 
