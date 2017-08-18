@@ -15,7 +15,9 @@
         </sec:authentication-provider>
         
         <sec:authentication-provider>
-            <sec:jdbc-user-service data-source-ref="dataSource"/>
+            <sec:jdbc-user-service data-source-ref="dataSource"                  
+                users-by-username-query="select * from users where binary username = ?"
+                authorities-by-username-query="select * from authorities where binary username = ?"/>
         </sec:authentication-provider>
         
     </sec:authentication-manager>
@@ -24,11 +26,13 @@
     <sec:http use-expressions="true">   
         
         <!-- Roles -->
+        <!--<sec:intercept-url pattern="/admin" access="permitAll" />-->
         <sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
         
         <!-- Authorities -->
         <sec:intercept-url pattern="/doCreate" access="isAuthenticated()" />
         <sec:intercept-url pattern="/offerCreated" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/createOffer" access="isAuthenticated()" />
         <sec:intercept-url pattern="/" access="permitAll" />
         <sec:intercept-url pattern="/loggedout" access="permitAll" />
 
@@ -42,9 +46,10 @@
         <sec:intercept-url pattern="/accountCreated" access="permitAll" />
         <sec:intercept-url pattern="/**" access="denyAll" />        
        
-        <sec:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
+        <sec:form-login  always-use-default-target="true" default-target-url="/" login-page="/login" authentication-failure-url="/login?error=true"/>
         <sec:logout logout-url="/logout" logout-success-url="/loggedout" /> 
        
     </sec:http>
+    <sec:global-method-security secured-annotations="enabled"/>
 </beans>
 

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,8 @@
     <body>
         <h1>Hello World!</h1>
 
-        <sf:form method="post" action="${pageContext.request.contextPath}/doCreate" commandName="offer">
+        <c:url value="/doCreate" var="doCreate" />
+        <sf:form method="post" action="${doCreate}" commandName="offer">
             <table class="formtable">
                 <tr>
                     <td class="label">Name</td>

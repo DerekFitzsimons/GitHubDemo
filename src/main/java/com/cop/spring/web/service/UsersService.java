@@ -7,7 +7,9 @@ package com.cop.spring.web.service;
 
 import com.cop.spring.web.dao.User;
 import com.cop.spring.web.dao.UsersDAO;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,10 +25,16 @@ public class UsersService {
         return usersDao.exists(username);
     }
 
+    @Secured("ROLE_ADMIN")
+    public List<User> getAllUsers() {
+        return usersDao.getAllUsers();
+    }
+
     @Autowired
     public void setOffersDao( UsersDAO offersDao ) {
         this.usersDao = offersDao;
     }
+    
     
     public void create(User user){
         usersDao.create( user );
