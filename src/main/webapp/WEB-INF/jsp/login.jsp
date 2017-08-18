@@ -15,10 +15,11 @@
     <body onload='document.f.username.focus();'>
         <div class="loginBox">
             <h3>Login with Username and Password</h3>
-            <c:if test="${param.error !=null}">
+            <c:if test="${param.error ne null}">
                 <p class="loginError">Login failed. Check that your username and password are correct.</p>                                       
             </c:if>
-            <form name='f' action='${pageContext.request.contextPath}/login' method='POST'>
+            <c:url value="/login" var="loginUrl" />
+            <form name='f' action='${loginUrl}' method='POST'>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <table class="logintable">
                     <tr>

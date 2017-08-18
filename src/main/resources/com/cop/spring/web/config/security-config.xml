@@ -42,7 +42,7 @@
         <sec:intercept-url pattern="/accountCreated" access="permitAll" />
         <sec:intercept-url pattern="/**" access="denyAll" />        
        
-        <sec:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
+        <sec:form-login  always-use-default-target="true" default-target-url="/" login-page="/login" authentication-failure-url="/login?error=true"/>
         <sec:logout logout-url="/logout" logout-success-url="/loggedout" /> 
        
     </sec:http>
