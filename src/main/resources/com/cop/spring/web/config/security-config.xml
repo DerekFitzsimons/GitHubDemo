@@ -7,6 +7,7 @@
 
 
     <sec:authentication-manager>
+        
         <sec:authentication-provider>
             <sec:user-service>
                 <sec:user name="John" authorities="admin" password="letmein" />
@@ -17,7 +18,8 @@
         <sec:authentication-provider>
             <sec:jdbc-user-service data-source-ref="dataSource"                  
                 users-by-username-query="select * from users where binary username = ?"
-                authorities-by-username-query="select * from authorities where binary username = ?"/>
+                authorities-by-username-query="select * from authorities where binary username = ?"
+            id="jdbcUserService"/>
         </sec:authentication-provider>
         
     </sec:authentication-manager>
@@ -51,6 +53,7 @@
         <sec:logout logout-url="/logout" logout-success-url="/loggedout" /> 
        
         <sec:access-denied-handler error-page="/denied" />
+        <sec:remember-me key="offerAppKey" user-service-ref="jdbcUserService" />
     </sec:http>
     <sec:global-method-security secured-annotations="enabled"/>
     

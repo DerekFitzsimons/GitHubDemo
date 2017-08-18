@@ -12,7 +12,7 @@
         <title>Login Page</title>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
     </head>
-    <body onload='document.f.username.focus();'>
+    <body onload='document.f.username.focus();'> 
         <div class="loginBox">
             <h3>Login with Username and Password</h3>
             <c:if test="${param.error ne null}">
@@ -32,13 +32,18 @@
                             <input type='password' name='password'/>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="label">Remember me:</td>
+                        <td>
+                            <input type='checkbox' name='_spring_security_remember_me' />
+                        </td>
+                    </tr>
                 </table>
-
                 <input class="fullButton" name="submit" type="submit" value="Login"/>
 
             </form>
-                
-                <p>create new Account <a href='<c:url value="/newAccount"/>'>Here</a></p>
-        </div>
+
+            <p>create new Account <a href='<c:url value="/newAccount"/>'>Here</a></p>
+        </div> 
     </body>
 </html>
