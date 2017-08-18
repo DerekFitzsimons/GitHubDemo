@@ -40,9 +40,15 @@ public class LoginController {
     public String showLogin() {
         return "login";
     }
+
     @RequestMapping( "/loggedout" )
     public String showLoggedOut() {
         return "loggedOut";
+    }
+
+    @RequestMapping( "/denied" )
+    public String showDenied() {
+        return "denied";
     }
 
     @RequestMapping( "/newAccount" )
@@ -62,10 +68,10 @@ public class LoginController {
             user.setAuthority( "user" );
 
             if( usersService.exists( user.getUsername() ) ) {
-                result.rejectValue( "username", "DuplicateKey.user.username");
-                output = "createAccount";             
-                
-            }else {
+                result.rejectValue( "username", "DuplicateKey.user.username" );
+                output = "createAccount";
+
+            } else {
                 usersService.create( user );
             }
 
@@ -76,22 +82,19 @@ public class LoginController {
 //                result.rejectValue( "username", "DuplicateKey.user.username" );
 //                output = "createAccount";
 //            }
-
         } else {
             output = "createAccount";
         }
 
         return output;
     }
-    
-        
+
     @RequestMapping( "/admin" )
-    public String showAdmin( Model model ) {
-        
+    public String showAdmin( Model model ){
+
         List<User>users = usersService.getAllUsers();
         
         model.addAttribute("users",users);
-        
         return "admin";
     }
 

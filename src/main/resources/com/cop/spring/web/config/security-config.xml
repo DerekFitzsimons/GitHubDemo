@@ -26,8 +26,8 @@
     <sec:http use-expressions="true">   
         
         <!-- Roles -->
-        <!--<sec:intercept-url pattern="/admin" access="permitAll" />-->
-        <sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/admin" access="permitAll" />
+        <!--<sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />-->
         
         <!-- Authorities -->
         <sec:intercept-url pattern="/doCreate" access="isAuthenticated()" />
@@ -35,6 +35,7 @@
         <sec:intercept-url pattern="/createOffer" access="isAuthenticated()" />
         <sec:intercept-url pattern="/" access="permitAll" />
         <sec:intercept-url pattern="/loggedout" access="permitAll" />
+        <sec:intercept-url pattern="/denied" access="permitAll" />
 
         <sec:intercept-url pattern="/static/**" access="permitAll" />
         <sec:intercept-url pattern="/home" access="permitAll" />
@@ -49,7 +50,9 @@
         <sec:form-login  always-use-default-target="true" default-target-url="/" login-page="/login" authentication-failure-url="/login?error=true"/>
         <sec:logout logout-url="/logout" logout-success-url="/loggedout" /> 
        
+        <sec:access-denied-handler error-page="/denied" />
     </sec:http>
     <sec:global-method-security secured-annotations="enabled"/>
+    
 </beans>
 
