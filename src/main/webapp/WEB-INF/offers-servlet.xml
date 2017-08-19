@@ -20,4 +20,14 @@
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" >
         <property name="basename" value="com.cop.spring.web.messages.messages" />
     </bean>
+    
+    <bean id ="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+    
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" >
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/layouts/default.xml</value>
+            </list>
+        </property>
+    </bean>
 </beans>
