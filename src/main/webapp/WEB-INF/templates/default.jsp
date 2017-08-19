@@ -5,13 +5,22 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Spring Tutorial</title>
+        <title><tiles:insertAttribute name="title"/></title>
     </head>
     <body>
-        <h1>Hello World! - Apache Tiles</h1>
+        <div>
+            <tiles:insertAttribute name="header"/>
+        </div>
+        <div>
+            <tiles:insertAttribute name="content"/>
+        </div>
+        <div>
+            <tiles:insertAttribute name="footer"/>
+        </div>
     </body>
 </html>
