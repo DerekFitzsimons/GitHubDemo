@@ -59,9 +59,7 @@
                 $('#confirmPassword').keyup(checkPasswordsMatch);
                 
                 $('#details').submit( validateForm )
-            }
-            
-            
+            }         
             
             $(document).ready( onLoad );
         </script>           
@@ -95,7 +93,8 @@
                 <tr>
                     <td class="label">Confirm Password</td>
                     <td>
-                        <input type="password" class="control" name="confirmPassword" id="confirmPassword" class="control"/><br/>
+                        <input type="password" class="control" name="confirmPassword" id="confirmPassword" 
+                               class="control"/><br/>
                         <div id="matchPass" class="error"></div>
                     </td>
                 </tr>
