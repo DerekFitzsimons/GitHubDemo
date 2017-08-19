@@ -25,20 +25,6 @@
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <p><a href="${pageContext.request.contextPath}/admin">Administration</a></p>
         </sec:authorize>
-        <sec:authorize access="!isAuthenticated()">
-            <c:url value='/login' var='loginUrl'/>
-            <form action="${loginUrl}" method="post">
-                <input id="error" type="hidden" value="false"/>
-                <input type="submit" value="Log in"/>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
-            </form>	
-        </sec:authorize>
-        <sec:authorize access="isAuthenticated()">
-            <c:url value='/logout' var='logoutUrl'/>
-            <form action="${logoutUrl}" method="post">
-                <input type="submit" value="Log out"/>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
-            </form>	
-        </sec:authorize>
+
     </body>
 </html>

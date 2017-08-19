@@ -11,15 +11,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><tiles:insertAttribute name="title"/></title>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
+        <script type='application/javascript' src='${pageContext.request.contextPath}/static/js/jquery-3_2_1_min.js'></script>        
     </head>
     <body>
-        <div>
+        <div class="header">
             <tiles:insertAttribute name="header"/>
         </div>
-        <div>
+        <div class="content">
             <tiles:insertAttribute name="content"/>
         </div>
-        <div>
+        <div class="footer">
             <tiles:insertAttribute name="footer"/>
         </div>
     </body>

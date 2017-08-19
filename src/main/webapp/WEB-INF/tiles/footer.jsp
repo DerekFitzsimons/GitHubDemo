@@ -5,4 +5,4 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-FOOTER
+Brought to you by the Spring Tutorial

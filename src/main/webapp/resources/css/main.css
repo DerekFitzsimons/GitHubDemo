@@ -89,3 +89,38 @@ table.offers {
 .fullButton {
     width:100%;
 }
+
+div.header {
+    width:100%;
+    height:60px;
+    text-align:right;
+    background-color: olivedrab;
+    color:white;
+}
+div.content {
+    position:relative;
+    padding: 40px;
+    background-color: palegreen;
+}
+div.footer {
+    width:100%;
+    height:50px;
+    text-align:center;
+    background-color: olivedrab;
+    color:white;
+}
+
+div.buttonHolder {
+    display:inline;
+    float: right;
+}
+div.buttonHolder form{
+    display:inline;
+    margin:5px;
+}
+
+div.title{
+    font-size: 20px;
+    text-align:center;
+}
+
