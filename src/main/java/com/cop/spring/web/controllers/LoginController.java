@@ -65,7 +65,7 @@ public class LoginController {
         if( !result.hasErrors() ) {
             output = "accountCreated";
             user.setEnabled( true );
-            user.setAuthority( "user" );
+            user.setAuthority( "ROLE_USER" );
 
             if( usersService.exists( user.getUsername() ) ) {
                 result.rejectValue( "username", "DuplicateKey.user.username" );
@@ -74,14 +74,6 @@ public class LoginController {
             } else {
                 usersService.create( user );
             }
-
-//            try {
-//                usersService.create( user );
-//            } catch( DuplicateKeyException ex ) {
-//                LOGGER.log( Level.SEVERE, "Duplicate Key" );
-//                result.rejectValue( "username", "DuplicateKey.user.username" );
-//                output = "createAccount";
-//            }
         } else {
             output = "createAccount";
         }
