@@ -59,9 +59,7 @@
                 $('#confirmPassword').keyup(checkPasswordsMatch);
                 
                 $('#details').submit( validateForm )
-            }
-            
-            
+            }         
             
             $(document).ready( onLoad );
         </script>           
@@ -88,14 +86,15 @@
                 <tr>
                     <td class="label">Password</td>
                     <td>
-                        <sf:input type="text" path="password" name="password" id="password" class="control"/><br/>
+                        <sf:input type="password" path="password" name="password" id="password" class="control"/><br/>
                         <sf:errors path="password" cssClass="error"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">Confirm Password</td>
                     <td>
-                        <input type="text" class="control" name="confirmPassword" id="confirmPassword" class="control"/><br/>
+                        <input type="password" class="control" name="confirmPassword" id="confirmPassword" 
+                               class="control"/><br/>
                         <div id="matchPass" class="error"></div>
                     </td>
                 </tr>
