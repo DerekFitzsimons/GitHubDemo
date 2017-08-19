@@ -6,13 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login Page</title>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
-    </head>
-    <body onload='document.f.username.focus();'> 
         <div class="loginBox">
             <h3>Login with Username and Password</h3>
             <c:if test="${param.error ne null}">
@@ -45,5 +38,4 @@
 
             <p>create new Account <a href='<c:url value="/newAccount"/>'>Here</a></p>
         </div> 
-    </body>
-</html>
+

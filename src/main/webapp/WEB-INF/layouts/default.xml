@@ -3,10 +3,69 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="home" template="/WEB-INF/templates/default.jsp">
+    <definition name="offers.base" template="/WEB-INF/templates/default.jsp">
         <put-attribute name="title" value="Offers Homepage" />
+        <put-attribute name="headerInclude" value="/WEB-INF/tiles/headerInclude.jsp" />
         <put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
         <put-attribute name="content" value="/WEB-INF/tiles/content.jsp" />
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
     </definition>
+
+    <definition name="home" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Offers Homepage" />
+        <put-attribute name="content" value="/WEB-INF/tiles/home.jsp" />
+    </definition>
+    
+    <definition name="offers" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Offers Display" />
+        <put-attribute name="content" value="/WEB-INF/tiles/offers.jsp" />
+    </definition>
+    
+    <definition name="offerCreated" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Offer Created" />
+        <put-attribute name="content" value="/WEB-INF/tiles/offerCreated.jsp" />
+    </definition>
+    
+    <definition name="login" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Login" />
+        <put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />
+    </definition>
+    
+    <definition name="loggetOut" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Logged Out" />
+        <put-attribute name="content" value="/WEB-INF/tiles/loggedOut.jsp" />
+    </definition>
+    
+    <definition name="error" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Error" />
+        <put-attribute name="content" value="/WEB-INF/tiles/error.jsp" />
+    </definition>
+    
+    <definition name="denied" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Access Denied" />
+        <put-attribute name="content" value="/WEB-INF/tiles/denied.jsp" />
+    </definition>
+    
+    <definition name="createOffer" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Create A New Offer" />
+        <put-attribute name="content" value="/WEB-INF/tiles/createOffer.jsp" />
+    </definition>
+    
+    <definition name="createAccount" extends="offers.base">
+        <put-attribute name="headerInclude" value="/WEB-INF/tiles/createAccountScript.jsp" />        
+        <put-attribute name="title" value="Spring Tutorial - Create A New Account" />
+        <put-attribute name="content" value="/WEB-INF/tiles/createAccount.jsp" />
+    </definition>
+    
+    <definition name="admin" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Administration" />
+        <put-attribute name="content" value="/WEB-INF/tiles/admin.jsp" />
+    </definition>
+    
+    <definition name="accountCreated" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Account Created" />
+        <put-attribute name="content" value="/WEB-INF/tiles/accountCreated.jsp" />
+    </definition>
+    
+    
 </tiles-definitions>

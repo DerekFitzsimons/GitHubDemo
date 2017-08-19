@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><tiles:insertAttribute name="title"/></title>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
-        <script type='application/javascript' src='${pageContext.request.contextPath}/static/js/jquery-3_2_1_min.js'></script>        
+        <script type='application/javascript' src='${pageContext.request.contextPath}/static/js/jquery-3_2_1_min.js'></script> 
+        <tiles:insertAttribute name="headerInclude" />
     </head>
     <body>
         <div class="header">
