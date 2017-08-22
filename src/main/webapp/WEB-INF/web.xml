@@ -45,6 +45,10 @@
             WEB-INF/classes/com/cop/spring/web/config/security-config.xml
         </param-value>
     </context-param>
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>production</param-value>
+    </context-param>
     <filter>
         <display-name>springSecurityFilterChain</display-name>
         <filter-name>springSecurityFilterChain</filter-name>
