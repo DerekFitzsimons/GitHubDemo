@@ -35,7 +35,7 @@ public class OffersDAO {
 
     @SuppressWarnings( "Convert2Lambda" )
     public List<Offer> getOffers() {
-        List<Offer> output = jdbc.query( "select * from OFFERS", new RowMapper<Offer>() {
+        List<Offer> output = jdbc.query( "select * from offers", new RowMapper<Offer>() {
 
             @Override
             public Offer mapRow( ResultSet rs, int rowNum ) throws SQLException {
@@ -58,7 +58,7 @@ public class OffersDAO {
     public boolean update( Offer offer ) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
         boolean output
-                = jdbc.update( "update OFFERS set name=:name, text=:text, email=:email where id=:id", params ) == 1;
+                = jdbc.update( "update offers set name=:name, text=:text, email=:email where id=:id", params ) == 1;
         LOGGER.info( "Update offer" );
         return output;
     }
@@ -68,7 +68,7 @@ public class OffersDAO {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
 
         boolean output
-                = jdbc.update( "insert into OFFERS (name, text, email) values (:name, :text, :email)", params ) == 1;
+                = jdbc.update( "insert into offers (name, text, email) values (:name, :text, :email)", params ) == 1;
         LOGGER.info( "Create offer" );
         return output;
 
@@ -81,13 +81,13 @@ public class OffersDAO {
 
         System.out.println( "Create offers" );
         return jdbc.
-                batchUpdate( "insert into OFFERS (id, name, text, email) values (:id, :name, :text, :email)", params );
+                batchUpdate( "insert into offers (id, name, text, email) values (:id, :name, :text, :email)", params );
     }
 
     public boolean delete( int id ) {
         MapSqlParameterSource params = new MapSqlParameterSource( "id", id );
 
-        return jdbc.update( "delete from OFFERS where id=:id", params ) == 1;
+        return jdbc.update( "delete from offers where id=:id", params ) == 1;
     }
 
     @SuppressWarnings( "Convert2Lambda" )
@@ -96,7 +96,7 @@ public class OffersDAO {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue( "id", id );
 
-        return jdbc.queryForObject( "select * from OFFERS where id=:id", params,
+        return jdbc.queryForObject( "select * from offers where id=:id", params,
                 new RowMapper<Offer>() {
 
             @Override

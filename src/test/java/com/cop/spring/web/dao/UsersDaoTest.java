@@ -54,7 +54,7 @@ public class UsersDaoTest {
     public void setUp() {
         JdbcTemplate jdbc = new JdbcTemplate( dataSource );
 
-        jdbc.execute( "delete from OFFERS" );
+        jdbc.execute( "delete from offers" );
         jdbc.execute( "delete from users" );
         jdbc.execute( "delete from authorities" );
     }
