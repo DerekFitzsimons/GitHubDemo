@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component( "usersDao" )
-public class UsersDAO {
+public class UsersDao {
 
     /**
      * Logger
      */
-    private static final Logger LOGGER = Logger.getLogger( UsersDAO.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(UsersDao.class.getName() );
 
     @Autowired
     private PasswordEncoder passwordEncoder;

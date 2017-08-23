@@ -40,6 +40,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.authority = authority;
+        this.email=email;
     }
 
 

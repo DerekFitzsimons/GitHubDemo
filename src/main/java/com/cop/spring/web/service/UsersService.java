@@ -6,7 +6,7 @@
 package com.cop.spring.web.service;
 
 import com.cop.spring.web.dao.User;
-import com.cop.spring.web.dao.UsersDAO;
+import com.cop.spring.web.dao.UsersDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service( "usersService" )
 public class UsersService {
 
-    private UsersDAO usersDao;
+    private UsersDao usersDao;
 
     public boolean exists( String username ) {
         return usersDao.exists(username);
@@ -31,7 +31,7 @@ public class UsersService {
     }
 
     @Autowired
-    public void setOffersDao( UsersDAO offersDao ) {
+    public void setOffersDao( UsersDao offersDao ) {
         this.usersDao = offersDao;
     }
     
