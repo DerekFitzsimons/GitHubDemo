@@ -5,6 +5,8 @@
  */
 package com.cop.spring.web.dao;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -26,10 +28,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ActiveProfiles( "test" )
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( locations = { "classpath*:/com/cop/spring/web/config/dao-context.xml",
-    "classpath*:/com/cop/spring/web/config/security-config.xml", "classpath*:/com/cop/spring/web//test/config/dataSource.xml" } )
+    "classpath*:/com/cop/spring/web/config/security-config.xml",
+    "classpath*:/com/cop/spring/web//test/config/dataSource.xml" } )
 
-public class UsersDaoTest{
-    
+public class UsersDaoTest {
+
     @Autowired
     public DataSource dataSource;
 
@@ -50,6 +53,8 @@ public class UsersDaoTest{
     @Before
     public void setUp() {
         JdbcTemplate jdbc = new JdbcTemplate( dataSource );
+
+        jdbc.execute( "delete from OFFERS" );
         jdbc.execute( "delete from users" );
         jdbc.execute( "delete from authorities" );
     }
@@ -58,48 +63,47 @@ public class UsersDaoTest{
     public void tearDown() {
     }
 
-//    /**
-//     * Test of exists method, of class UsersDao.
-//     */
-//    @Test
-//    public void testExists() {
-//        System.out.println( "exists" );
-//        String username = "";
-//        UsersDao instance = new UsersDao();
-//        boolean expResult = false;
-//        boolean result = instance.exists( username );
-//        assertEquals( expResult, result );
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail( "The test case is a prototype." );
-//    }
-//
-//    /**
-//     * Test of getAllUsers method, of class UsersDao.
-//     */
-//    @Test
-//    public void testGetAllUsers() {
-//        System.out.println( "getAllUsers" );
-//        UsersDao instance = new UsersDao();
-//        List<User> expResult = null;
-//        List<User> result = instance.getAllUsers();
-//        assertEquals( expResult, result );
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail( "The test case is a prototype." );
-//    }
-//
-//    /**
-//     * Test of setDataSource method, of class UsersDao.
-//     */
-//    @Test
-//    public void testSetDataSource() {
-//        System.out.println( "setDataSource" );
-//        DataSource jdbc = null;
-//        UsersDao instance = new UsersDao();
-//        instance.setDataSource( jdbc );
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail( "The test case is a prototype." );
-//    }
-    
+    /**
+     * Test of exists method, of class UsersDao.
+     */
+    @Test
+    public void testExists() {
+        System.out.println( "exists" );
+
+        String username = "username";
+        boolean expResult = false;
+        boolean result = usersDao.exists( username );
+        assertEquals( expResult, result );
+
+        User user = new User( "username", "email@home.ie", "password", "ROLE_USER" );
+        usersDao.create( user );
+
+        expResult = true;
+        result = usersDao.exists( username );
+        assertEquals( expResult, result );
+    }
+
+    /**
+     * Test of getAllUsers method, of class UsersDao.
+     */
+    @Test
+    public void testGetAllUsers() {
+        System.out.println( "getAllUsers" );
+        List<User> expResult = new ArrayList<>();
+        List<User> result = usersDao.getAllUsers();
+        assertEquals( expResult, result );
+        assertEquals( expResult.size(), result.size() );
+
+        User user = new User( "username", "email@home.ie", "password", "ROLE_USER" );
+        usersDao.create( user );
+
+        expResult = new ArrayList<>();
+        expResult.add( new User( "username", "email@home.ie", "password", "ROLE_USER" ) );
+        result = usersDao.getAllUsers();
+        assertEquals( expResult, result );
+
+    }
+
     /**
      * Test of create method, of class UsersDao.
      */
