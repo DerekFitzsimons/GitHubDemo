@@ -1,5 +1,6 @@
 package com.cop.spring.web.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,7 +19,7 @@ public class UsersDao {
     /**
      * Logger
      */
-    private static final Logger LOGGER = Logger.getLogger(UsersDao.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( UsersDao.class.getName() );
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -35,7 +36,10 @@ public class UsersDao {
 
     public List<User> getAllUsers() {
         String sql = "select * from users, authorities where users.username = authorities.username";
-        return jdbc.query( sql, BeanPropertyRowMapper.newInstance( User.class ) );
+        List<User> output = jdbc.query( sql, BeanPropertyRowMapper.newInstance( User.class ) );
+        return output == null
+               ? new ArrayList<User>()
+               : output;
     }
 
     @Autowired
@@ -50,9 +54,9 @@ public class UsersDao {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue( "username", user.getUsername() );
         params.addValue( "password", passwordEncoder.encode( user.getPassword() ) );
-        params.addValue( "email", user.getEmail());
-        params.addValue( "enabled", user.isEnabled());
-        params.addValue( "authority", user.getAuthority());
+        params.addValue( "email", user.getEmail() );
+        params.addValue( "enabled", user.isEnabled() );
+        params.addValue( "authority", user.getAuthority() );
         String sql1
                 = "insert into users (username, email, password, enabled) values (:username, :email, :password, :enabled)";
 
