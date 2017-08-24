@@ -1,40 +1,49 @@
 package com.cop.spring.web.dao;
 
-import com.cop.spring.web.controllers.validation.ValidEmail;
-import javax.validation.constraints.NotNull;
+import java.util.Objects;
 import javax.validation.constraints.Size;
 
 public class Offer {
 
     private int id;
 
-    @Size( min = 3, max = 100 )
-    private String name;
-
-    @NotNull
-    //@Pattern(regexp = ".*\\@.*\\..*")
-    @ValidEmail( min = 6)
-    private String email;
-
     @Size( min = 20, max = 255 )
     private String text;
+
+    private User user;
 
     public Offer() {
 
     }
 
-    public Offer( String name, String email, String text ) {
-        this.name = name;
-        this.email = email;
+    public Offer( User user, String text ) {
+        this.user = user;
         this.text = text;
     }
 
-    public Offer( int id, String name, String email, String text ) {
+    public Offer( int id, User user, String text ) {
         super();
         this.id = id;
-        this.name = name;
-        this.email = email;
+        this.user = user;
         this.text = text;
+    }
+
+    @Override
+    public boolean equals( Object obj ) {
+        if( this == obj ) {
+            return true;
+        }
+        if( obj == null ) {
+            return false;
+        }
+        if( getClass() != obj.getClass() ) {
+            return false;
+        }
+        final Offer other = (Offer) obj;
+        if( !Objects.equals( this.text, other.getText() ) ) {
+            return false;
+        }
+        return Objects.equals( this.user, other.getUser() );
     }
 
     public int getId() {
@@ -45,22 +54,6 @@ public class Offer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName( String name ) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail( String email ) {
-        this.email = email;
-    }
-
     public String getText() {
         return text;
     }
@@ -69,10 +62,32 @@ public class Offer {
         this.text = text;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser( User user ) {
+        this.user = user;
+    }
+    public String getUsername(){
+        return user.getUsername();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode( this.text );
+        hash = 47 * hash + Objects.hashCode( this.user );
+        return hash;
+    }
+
     @Override
     public String toString() {
-        return "Offer [id=" + id + ", name=" + name + ", email=" + email
-                + ", text=" + text + "]\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append( "Offer{id=" ).append( id ).append( ", text=" ).append( text ).append( ", " );
+        sb.append( "user=" ).append( user.getUsername() ).append( '}' );
+        return sb.toString();
     }
+    
 
 }

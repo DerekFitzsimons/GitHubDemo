@@ -20,7 +20,10 @@ public class User {
     @Email
     private String email;
 
+
     private boolean enabled = false;
+    
+    private String name;
 
     @NotBlank()
     @Pattern( regexp = "^\\S+$" )
@@ -36,25 +39,15 @@ public class User {
 
     }
 
-    public User( String username, String email, String password, String authority ) {
+    public User( String username, String name, String email, String password, String authority ) {
         this.username = username;
         this.password = password;
         this.authority = authority;
         this.email = email;
         this.enabled = true;
+        this.name = name;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + Objects.hashCode( this.authority );
-        hash = 47 * hash + Objects.hashCode( this.email );
-        hash = 47 * hash + ( this.enabled
-                             ? 1
-                             : 0 );
-        hash = 47 * hash + Objects.hashCode( this.username );
-        return hash;
-    }
 
     @Override
     public boolean equals( Object obj ) {
@@ -73,6 +66,8 @@ public class User {
                 } else if( !Objects.equals( this.email, other.getEmail() ) ) {
                     output = false;
                 } else if( !Objects.equals( this.username, other.getUsername() ) ) {
+                    output = false;
+                } else if( !Objects.equals( this.name, other.getName() ) ) {
                     output = false;
                 }
             }
@@ -97,6 +92,12 @@ public class User {
     public void setEmail( String email ) {
         this.email = email;
     }
+    public String getName() {
+        return name;
+    }
+    public void setName( String name ) {
+        this.name = name;
+    }
 
     public String getPassword() {
         return password;
@@ -113,6 +114,18 @@ public class User {
     public void setUsername( String username ) {
         this.username = username;
     }
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode( this.authority );
+        hash = 47 * hash + Objects.hashCode( this.email );
+        hash = 47 * hash + Objects.hashCode( this.name );
+        hash = 47 * hash + ( this.enabled
+                             ? 1
+                             : 0 );
+        hash = 47 * hash + Objects.hashCode( this.username );
+        return hash;
+    }
 
     public boolean isEnabled() {
         return enabled;
@@ -120,6 +133,15 @@ public class User {
 
     public void setEnabled( boolean enabled ) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append( "User{authority=" ).append( authority ).append( ", email=" ).append( email );
+        sb.append( ", name=" ).append( name ).append( ", enabled=" ).append( enabled ).append( ", username=" );
+        sb.append( username ).append( '}' );
+        return sb.toString();
     }
 
 }

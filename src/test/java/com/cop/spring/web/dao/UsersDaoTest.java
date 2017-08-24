@@ -29,8 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( locations = { "classpath*:/com/cop/spring/web/config/dao-context.xml",
     "classpath*:/com/cop/spring/web/config/security-config.xml",
-    "classpath*:/com/cop/spring/web//test/config/dataSource.xml" } )
-
+    "classpath*:/com/cop/spring/web/test/config/dataSource.xml" } )
 public class UsersDaoTest {
 
     @Autowired
@@ -53,10 +52,8 @@ public class UsersDaoTest {
     @Before
     public void setUp() {
         JdbcTemplate jdbc = new JdbcTemplate( dataSource );
-
         jdbc.execute( "delete from offers" );
         jdbc.execute( "delete from users" );
-        jdbc.execute( "delete from authorities" );
     }
 
     @After
@@ -75,7 +72,7 @@ public class UsersDaoTest {
         boolean result = usersDao.exists( username );
         assertEquals( expResult, result );
 
-        User user = new User( "username", "email@home.ie", "password", "ROLE_USER" );
+        User user = new User( "username", "name","email@home.ie", "password", "ROLE_USER" );
         usersDao.create( user );
 
         expResult = true;
@@ -94,11 +91,11 @@ public class UsersDaoTest {
         assertEquals( expResult, result );
         assertEquals( expResult.size(), result.size() );
 
-        User user = new User( "username", "email@home.ie", "password", "ROLE_USER" );
+        User user = new User( "username", "name","email@home.ie", "password", "ROLE_USER" );
         usersDao.create( user );
 
         expResult = new ArrayList<>();
-        expResult.add( new User( "username", "email@home.ie", "password", "ROLE_USER" ) );
+        expResult.add( new User( "username", "name","email@home.ie", "password", "ROLE_USER" ) );
         result = usersDao.getAllUsers();
         assertEquals( expResult, result );
 
@@ -110,7 +107,7 @@ public class UsersDaoTest {
     @Test
     public void testCreate() {
         System.out.println( "create" );
-        User user = new User( "username", "email@home.ie", "password", "ROLE_USER" );
+        User user = new User( "username", "name","email@home.ie", "password", "ROLE_USER" );
         boolean expResult = true;
         boolean result = usersDao.create( user );
         assertEquals( "User created", expResult, result );

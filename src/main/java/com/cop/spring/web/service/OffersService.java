@@ -6,7 +6,7 @@
 package com.cop.spring.web.service;
 
 import com.cop.spring.web.dao.Offer;
-import com.cop.spring.web.dao.OffersDAO;
+import com.cop.spring.web.dao.OffersDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -19,10 +19,10 @@ import org.springframework.stereotype.Service;
 @Service( "offersService" )
 public class OffersService {
 
-    private OffersDAO offersDao;
+    private OffersDao offersDao;
 
     @Autowired
-    public void setOffersDao( OffersDAO offersDao ) {
+    public void setOffersDao( OffersDao offersDao ) {
         this.offersDao = offersDao;
     }
 
