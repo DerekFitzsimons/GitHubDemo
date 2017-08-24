@@ -52,6 +52,7 @@
     </definition>
     
     <definition name="createOffer" extends="offers.base">
+        <put-attribute name="headerInclude" value="/WEB-INF/tiles/createOfferScript.jsp" />
         <put-attribute name="title" value="Spring Tutorial - Create A New Offer" />
         <put-attribute name="content" value="/WEB-INF/tiles/createOffer.jsp" />
     </definition>

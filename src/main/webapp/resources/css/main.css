@@ -124,3 +124,7 @@ div.title{
     text-align:center;
 }
 
+input.delete{
+    border:1px solid red;
+}
+

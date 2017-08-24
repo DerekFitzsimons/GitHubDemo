@@ -32,7 +32,7 @@
                 <c:if test="${offer.id!=0}">
                     <tr>
                         <td>&nbsp;</td>
-                        <td><input name="delete" value="Delete Offer" class="control" type="submit"/></td>
+                        <td><input name="delete" id="delete" value="Delete Offer" class="delete control" type="submit"/></td>
                     </tr>
                 </c:if>
             </table>
