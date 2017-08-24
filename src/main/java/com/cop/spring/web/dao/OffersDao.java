@@ -1,7 +1,5 @@
 package com.cop.spring.web.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -10,7 +8,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -38,27 +35,21 @@ public class OffersDao {
     @SuppressWarnings( "Convert2Lambda" )
     public List<Offer> getOffers() {
         List<Offer> output = jdbc.query( "select * from offers, users where offers.username= users.username",
-                new RowMapper<Offer>() {
+                new OfferRowMapper() );
 
-            @Override
-            public Offer mapRow( ResultSet rs, int rowNum ) throws SQLException {
+        if( output == null ) {
+            output = new ArrayList<>();
+        }
+        LOGGER.info( "Getting offers" );
+        return output;
+    }
 
-                User user = new User();
-                user.setAuthority( rs.getString( "authority" ) );
-                user.setEmail( rs.getString( "authority" ) );
-                user.setEnabled( rs.getBoolean( "enabled" ) );
-                user.setName( rs.getString( "name" ) );
-                user.setUsername( rs.getString( "username" ) );
-
-                Offer offer = new Offer();
-                offer.setId( rs.getInt( "id" ) );
-                offer.setText( rs.getString( "text" ) );
-                offer.setUser( user );
-
-                return offer;
-            }
-
-        } );
+    @SuppressWarnings( "Convert2Lambda" )
+    public List<Offer> getOffers( String userName ) {
+        StringBuilder sql = new StringBuilder();
+        sql.append( "select * from offers, users where offers.username= users.username and offers.username=:username" );
+        List<Offer> output = jdbc.query( sql.toString(), new MapSqlParameterSource( "username", userName ),
+                new OfferRowMapper() );
 
         if( output == null ) {
             output = new ArrayList<>();
@@ -69,8 +60,7 @@ public class OffersDao {
 
     public boolean update( Offer offer ) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
-        boolean output
-                = jdbc.update( "update offers set text=:text where id=:id", params ) == 1;
+        boolean output = jdbc.update( "update offers set text=:text where id=:id", params ) == 1;
         LOGGER.info( "Update offer" );
         return output;
     }
@@ -79,8 +69,7 @@ public class OffersDao {
 
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
 
-        boolean output
-                = jdbc.update( "insert into offers (username,text ) values (:username, :text)", params ) == 1;
+        boolean output = jdbc.update( "insert into offers (username,text ) values (:username, :text)", params ) == 1;
         LOGGER.info( "Create offer" );
         return output;
 
@@ -92,8 +81,7 @@ public class OffersDao {
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch( offers.toArray() );
 
         System.out.println( "Create offers" );
-        return jdbc.
-                batchUpdate( "insert into offers (username,text ) values (:username, :text)", params );
+        return jdbc.batchUpdate( "insert into offers (username,text ) values (:username, :text)", params );
     }
 
     public boolean delete( int id ) {
@@ -112,28 +100,7 @@ public class OffersDao {
             StringBuilder sql = new StringBuilder();
             sql.append( "select * from offers, users " );
             sql.append( "where offers.username=users.username and users.enabled=true and id=:id" );
-            output = jdbc.queryForObject( sql.toString(), params,
-                    new RowMapper<Offer>() {
-
-                @Override
-                public Offer mapRow( ResultSet rs, int rowNum )
-                        throws SQLException {
-                    User user = new User();
-                    user.setAuthority( rs.getString( "authority" ) );
-                    user.setEmail( rs.getString( "authority" ) );
-                    user.setEnabled( true );
-                    user.setName( rs.getString( "name" ) );
-                    user.setUsername( rs.getString( "username" ) );
-                    Offer offer = new Offer();
-
-                    offer.setId( rs.getInt( "id" ) );
-                    offer.setText( rs.getString( "text" ) );
-                    offer.setUser( user );
-
-                    return offer;
-                }
-
-            } );
+            output = jdbc.queryForObject( sql.toString(), params, new OfferRowMapper() );
         } catch( EmptyResultDataAccessException ex ) {
             output = null;
         }

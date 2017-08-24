@@ -71,7 +71,7 @@ public class OffersDaoTest {
      * Test of getOffers method, of class OffersDao.
      */
     @Test
-    public void testGetOffers() {
+    public void testGetOffers_0args() {
         System.out.println( "getOffers" );
 
         List<Offer> expResult = new ArrayList<>();
@@ -195,6 +195,27 @@ public class OffersDaoTest {
         Offer expResult = offers.get( 1 );
         Offer result = offersDao.getOffer( id );
         assertEquals( expResult.getText(), result.getText() );
+
+    }
+
+    /**
+     * Test of getOffers method, of class OffersDao.
+     */
+    @Test
+    public void testGetOffers_String() {
+        System.out.println( "getOffers" );
+
+        List<Offer> offers = new ArrayList<>();
+        offers.add( new Offer( new User( "username", "name", "email@home.ie", "password", "ROLE_USER" ), "text 1" ) );
+        offers.add( new Offer( new User( "username", "name", "email@home.ie", "password", "ROLE_USER" ), "text 2" ) );
+
+        offersDao.create( offers );
+
+        String userName = "username";
+        List<Offer> expResult = offers;
+        List<Offer> result = offersDao.getOffers( userName );
+        assertEquals( expResult.get( 0 ).getText(), result.get( 0 ).getText() );
+        assertEquals( expResult.get( 1 ).getText(), result.get( 1 ).getText() );
 
     }
 
