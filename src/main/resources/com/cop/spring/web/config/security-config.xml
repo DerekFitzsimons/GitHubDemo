@@ -11,8 +11,8 @@
         <sec:authentication-provider>
             <sec:password-encoder ref="passwordEncoder" />
             <sec:jdbc-user-service data-source-ref="dataSource"                  
-                                   users-by-username-query="select * from users where binary username = ?"
-                                   authorities-by-username-query="select * from authorities where binary username = ?"
+                                   users-by-username-query="select username, password, enabled from users where binary username = ?"
+                                   authorities-by-username-query="select username, authority from users where binary username = ?"
                                    id="jdbcUserService"
             />
         </sec:authentication-provider>        
