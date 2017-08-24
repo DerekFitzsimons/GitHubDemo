@@ -6,6 +6,22 @@
     therefore it is assumed to be part of version control checkout.
     Without this configuration present, some functionality in the IDE may be limited or fail altogether.
     -->
+    <config-data xmlns="http://www.netbeans.org/ns/maven-config-data/1">
+        <configurations>
+            <configuration id="test-profile" profiles=""/>
+        </configurations>
+    </config-data>
+    <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
+        <config-files>
+            <config-file>src/main/webapp/WEB-INF/offers-servlet.xml</config-file>
+            <config-file>src/main/resources/com/cop/spring/web/config/dao-context.xml</config-file>
+            <config-file>src/main/resources/com/cop/spring/web/config/security-config.xml</config-file>
+            <config-file>src/main/resources/com/cop/spring/web/config/service-context.xml</config-file>
+            <config-file>src/main/resources/com/cop/spring/web/test/config/dataSource.xml</config-file>
+        </config-files>
+        <config-file-groups/>
+    </spring-data>
+    <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
     <properties xmlns="http://www.netbeans.org/ns/maven-properties-data/1">
         <!--
         Properties that influence various parts of the IDE, especially code formatting and the like. 
@@ -23,20 +39,6 @@
         <org-netbeans-modules-css-prep.less_2e_compiler_2e_options/>
         <org-netbeans-modules-css-prep.sass_2e_mappings>/scss:/css</org-netbeans-modules-css-prep.sass_2e_mappings>
         <org-netbeans-modules-javascript2-json.json_2e_comments>true</org-netbeans-modules-javascript2-json.json_2e_comments>
+        <org-netbeans-modules-web-clientproject-api.js_2e_libs_2e_folder>js/libs</org-netbeans-modules-web-clientproject-api.js_2e_libs_2e_folder>
     </properties>
-    <config-data xmlns="http://www.netbeans.org/ns/maven-config-data/1">
-        <configurations>
-            <configuration id="test-profile" profiles=""/>
-        </configurations>
-    </config-data>
-    <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
-        <config-files>
-            <config-file>src/main/webapp/WEB-INF/offers-servlet.xml</config-file>
-            <config-file>src/main/resources/com/cop/spring/web/config/dao-context.xml</config-file>
-            <config-file>src/main/resources/com/cop/spring/web/config/security-config.xml</config-file>
-            <config-file>src/main/resources/com/cop/spring/web/config/service-context.xml</config-file>
-            <config-file>src/main/resources/com/cop/spring/web/test/config/dataSource.xml</config-file>
-        </config-files>
-        <config-file-groups/>
-    </spring-data>
 </project-shared-configuration>

@@ -158,11 +158,22 @@ public class OffersDaoTest {
     @Test
     public void testDelete() {
         System.out.println( "delete" );
-        int id = 0;
 
-        boolean expResult = false;
+        List<Offer> offers = new ArrayList<>();
+        offers.add( new Offer( new User( "username", "name", "email@home.ie", "password", "ROLE_USER" ), "text 1" ) );
+        offers.add( new Offer( new User( "username", "name", "email@home.ie", "password", "ROLE_USER" ), "text 2" ) );
+
+        offersDao.create( offers );
+
+        List<Offer> dbOffers = offersDao.getOffers();
+        int id = dbOffers.get( 1 ).getId();
+
+        boolean expResult = true;
         boolean result = offersDao.delete( id );
         assertEquals( expResult, result );
+
+        Offer noOffer = offersDao.getOffer( id );
+        assertNull( noOffer );
     }
 
     /**

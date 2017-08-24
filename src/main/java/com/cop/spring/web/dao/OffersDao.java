@@ -25,7 +25,7 @@ public class OffersDao {
     /**
      * Logger
      */
-    private static final Logger LOGGER = Logger.getLogger(OffersDao.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( OffersDao.class.getName() );
 
     private NamedParameterJdbcTemplate jdbc;
 
@@ -46,10 +46,10 @@ public class OffersDao {
                 User user = new User();
                 user.setAuthority( rs.getString( "authority" ) );
                 user.setEmail( rs.getString( "authority" ) );
-                user.setEnabled( rs.getBoolean( "enabled") );
+                user.setEnabled( rs.getBoolean( "enabled" ) );
                 user.setName( rs.getString( "name" ) );
                 user.setUsername( rs.getString( "username" ) );
-                
+
                 Offer offer = new Offer();
                 offer.setId( rs.getInt( "id" ) );
                 offer.setText( rs.getString( "text" ) );
@@ -109,7 +109,10 @@ public class OffersDao {
         params.addValue( "id", id );
         Offer output;
         try {
-            output = jdbc.queryForObject( "select * from offers, users where id=:id", params,
+            StringBuilder sql = new StringBuilder();
+            sql.append( "select * from offers, users " );
+            sql.append( "where offers.username=users.username and users.enabled=true and id=:id" );
+            output = jdbc.queryForObject( sql.toString(), params,
                     new RowMapper<Offer>() {
 
                 @Override
