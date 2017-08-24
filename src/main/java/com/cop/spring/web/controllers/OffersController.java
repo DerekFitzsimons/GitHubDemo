@@ -24,7 +24,6 @@ public class OffersController {
     @RequestMapping( "/offers" )
     public String showOffers( Model model ) {
 
-//        offersService.throwTestException();
         List<Offer> offers = offersService.getCurrent();
         model.addAttribute( "offers", offers );
 
@@ -40,7 +39,6 @@ public class OffersController {
     @RequestMapping( value = "/doCreate", method = RequestMethod.POST )
     public String doCreate( Model model, @Valid Offer offer, BindingResult result, Principal principal) {
         String output;
-//        System.out.println( offer );
         if( !result.hasErrors() ) {
             output = "offerCreated";
             String username= principal.getName();

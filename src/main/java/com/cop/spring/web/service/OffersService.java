@@ -34,4 +34,17 @@ public class OffersService {
     public void createOffer( Offer offer ) {
         offersDao.create( offer );
     }
+
+    public boolean hasOffer( String name ) {
+        boolean output = true;
+        if(name == null || name.isEmpty()){
+            output = false;
+        } else {
+            List<Offer> offers = offersDao.getOffers(name);
+            if(offers.isEmpty()){
+                output = false;
+            }
+        }
+        return output;
+    }
 }
