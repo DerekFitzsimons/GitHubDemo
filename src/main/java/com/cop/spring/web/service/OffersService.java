@@ -21,13 +21,26 @@ public class OffersService {
 
     private OffersDao offersDao;
 
+    @Secured( { "ROLE_USER", "ROLE_ADMIN" } )
+    public void createOffer( Offer offer ) {
+        offersDao.create( offer );
+    }
+
+    public void delete( int id ) {
+        offersDao.delete( id );
+    }
+
+    public List<Offer> getCurrent() {
+        return offersDao.getOffers();
+    }
+
     public Offer getOffer( String username ) {
         Offer output = null;
-        if(username!= null && !username.isEmpty()){
+        if( username != null && !username.isEmpty() ) {
             List<Offer> offers = offersDao.getOffers( username );
-            if(!offers.isEmpty()){
-                output = offers.get( 0);
-            }             
+            if( !offers.isEmpty() ) {
+                output = offers.get( 0 );
+            }
         }
         return output;
     }
@@ -37,22 +50,13 @@ public class OffersService {
         this.offersDao = offersDao;
     }
 
-    public List<Offer> getCurrent() {
-        return offersDao.getOffers();
-    }
-
-    @Secured({"ROLE_USER","ROLE_ADMIN"})
-    public void createOffer( Offer offer ) {
-        offersDao.create( offer );
-    }
-
     public boolean hasOffer( String name ) {
         boolean output = true;
-        if(name == null || name.isEmpty()){
+        if( name == null || name.isEmpty() ) {
             output = false;
         } else {
-            List<Offer> offers = offersDao.getOffers(name);
-            if(offers.isEmpty()){
+            List<Offer> offers = offersDao.getOffers( name );
+            if( offers.isEmpty() ) {
                 output = false;
             }
         }
@@ -60,10 +64,11 @@ public class OffersService {
     }
 
     public void saveOrUpdateOffer( Offer offer ) {
-        if(offer.getId()!=0){
-            offersDao.update(offer);
-        }else {
-            offersDao.create(offer);
+        if( offer.getId() != 0 ) {
+            offersDao.update( offer );
+        } else {
+            offersDao.create( offer );
         }
     }
+
 }

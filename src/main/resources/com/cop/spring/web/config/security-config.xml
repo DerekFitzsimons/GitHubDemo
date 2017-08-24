@@ -26,6 +26,7 @@
         <!-- Authorities -->
         <sec:intercept-url pattern="/doCreate" access="isAuthenticated()" />
         <sec:intercept-url pattern="/offerCreated" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/offerDeleted" access="isAuthenticated()" />
         <sec:intercept-url pattern="/createOffer" access="isAuthenticated()" />
         <sec:intercept-url pattern="/" access="permitAll" />
         <sec:intercept-url pattern="/loggedout" access="permitAll" />

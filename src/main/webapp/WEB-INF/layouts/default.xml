@@ -25,6 +25,11 @@
         <put-attribute name="title" value="Spring Tutorial - Offer Created" />
         <put-attribute name="content" value="/WEB-INF/tiles/offerCreated.jsp" />
     </definition>
+
+    <definition name="offerDeleted" extends="offers.base">
+        <put-attribute name="title" value="Spring Tutorial - Offer Deleted" />
+        <put-attribute name="content" value="/WEB-INF/tiles/offerDeleted.jsp" />
+    </definition>
     
     <definition name="login" extends="offers.base">
         <put-attribute name="title" value="Spring Tutorial - Login" />

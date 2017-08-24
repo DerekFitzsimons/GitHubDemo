@@ -25,6 +25,16 @@
                     <td>&nbsp;</td>
                     <td><input type="submit" value="Save Offer" class="control"/></td>
                 </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <c:if test="${offer.id!=0}">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input name="delete" value="Delete Offer" class="control" type="submit"/></td>
+                    </tr>
+                </c:if>
             </table>
         </sf:form>
 
