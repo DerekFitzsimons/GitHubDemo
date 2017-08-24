@@ -12,6 +12,7 @@
 
         <c:url value="/doCreate" var="doCreate" />
         <sf:form method="post" action="${doCreate}" commandName="offer">
+            <sf:input path="id" name="id" type="hidden"/>
             <table class="formtable">
                 <tr>
                     <td class="label">Your Offer</td>
@@ -22,7 +23,7 @@
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td><input type="submit" value="Create Offer" class="control"/></td>
+                    <td><input type="submit" value="Save Offer" class="control"/></td>
                 </tr>
             </table>
         </sf:form>

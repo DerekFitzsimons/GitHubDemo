@@ -21,6 +21,17 @@ public class OffersService {
 
     private OffersDao offersDao;
 
+    public Offer getOffer( String username ) {
+        Offer output = null;
+        if(username!= null && !username.isEmpty()){
+            List<Offer> offers = offersDao.getOffers( username );
+            if(!offers.isEmpty()){
+                output = offers.get( 0);
+            }             
+        }
+        return output;
+    }
+
     @Autowired
     public void setOffersDao( OffersDao offersDao ) {
         this.offersDao = offersDao;
@@ -46,5 +57,13 @@ public class OffersService {
             }
         }
         return output;
+    }
+
+    public void saveOrUpdateOffer( Offer offer ) {
+        if(offer.getId()!=0){
+            offersDao.update(offer);
+        }else {
+            offersDao.create(offer);
+        }
     }
 }
