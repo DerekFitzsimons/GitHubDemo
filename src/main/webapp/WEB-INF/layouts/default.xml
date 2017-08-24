@@ -31,7 +31,7 @@
         <put-attribute name="content" value="/WEB-INF/tiles/login.jsp" />
     </definition>
     
-    <definition name="loggetOut" extends="offers.base">
+    <definition name="loggedOut" extends="offers.base">
         <put-attribute name="title" value="Spring Tutorial - Logged Out" />
         <put-attribute name="content" value="/WEB-INF/tiles/loggedOut.jsp" />
     </definition>

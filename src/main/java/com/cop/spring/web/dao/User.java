@@ -23,6 +23,8 @@ public class User {
 
     private boolean enabled = false;
     
+    @NotBlank()
+    @Size( min = 3, max = 60 )
     private String name;
 
     @NotBlank()

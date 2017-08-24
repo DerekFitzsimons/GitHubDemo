@@ -14,20 +14,6 @@
         <sf:form method="post" action="${doCreate}" commandName="offer">
             <table class="formtable">
                 <tr>
-                    <td class="label">Name</td>
-                    <td>
-                        <sf:input class="control" path="name" name="name"  type="text" /><br/>
-                        <sf:errors path="name" cssClass="error"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label">Email</td>
-                    <td>
-                        <sf:input type="text" path="email" name="email" class="control"/><br/>
-                        <sf:errors path="email" cssClass="error"/>
-                    </td>
-                </tr>
-                <tr>
                     <td class="label">Your Offer</td>
                     <td>
                         <sf:textarea path="text" name="text" class="control" /><br/>

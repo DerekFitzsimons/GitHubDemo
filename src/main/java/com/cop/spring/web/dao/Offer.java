@@ -13,7 +13,7 @@ public class Offer {
     private User user;
 
     public Offer() {
-
+        this.user = new User();
     }
 
     public Offer( User user, String text ) {
@@ -71,6 +71,9 @@ public class Offer {
     }
     public String getUsername(){
         return user.getUsername();
+    }
+    public void setUsername(String userName){
+        user.setUsername(userName);
     }
 
     @Override

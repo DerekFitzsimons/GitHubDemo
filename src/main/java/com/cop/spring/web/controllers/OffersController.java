@@ -2,6 +2,7 @@ package com.cop.spring.web.controllers;
 
 import com.cop.spring.web.dao.Offer;
 import com.cop.spring.web.service.OffersService;
+import java.security.Principal;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,16 @@ public class OffersController {
     }
 
     @RequestMapping( value = "/doCreate", method = RequestMethod.POST )
-    public String doCreate( Model model, @Valid Offer offer, BindingResult result ) {
+    public String doCreate( Model model, @Valid Offer offer, BindingResult result, Principal principal) {
         String output;
-        System.out.println( offer );
+//        System.out.println( offer );
         if( !result.hasErrors() ) {
             output = "offerCreated";
-
+            String username= principal.getName();
+            offer.setUsername( username );
             offersService.createOffer( offer );
+            
+            
         } else {
             output = "createOffer";
         }
