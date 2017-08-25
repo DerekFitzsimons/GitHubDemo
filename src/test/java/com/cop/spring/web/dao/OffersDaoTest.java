@@ -29,7 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( locations = { "classpath*:/com/cop/spring/web/config/dao-context.xml",
     "classpath*:/com/cop/spring/web/config/security-config.xml",
-    "classpath*:/com/cop/spring/web/test/config/dataSource.xml" } )
+    "classpath*:/com/cop/spring/web/config/dataSource.xml" } )
 public class OffersDaoTest {
 
     @Autowired
