@@ -5,11 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-    <context:component-scan base-package="com.caveofprogramming.spring.test">
+    <context:component-scan base-package="com.cop.spring.web">
     </context:component-scan>
 	
     <context:property-placeholder
-        location="com/cop/spring/web/test/config/jdbc.properties" />
+        location="com/cop/spring/web/config/jdbc.properties" />
     <beans profile="test">	
         <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
               destroy-method="close">
