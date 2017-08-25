@@ -6,20 +6,22 @@
 package com.cop.spring.web.dao;
 
 import java.util.Objects;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
 /**
  *
  * @author dfitzsimons
  */
+@Entity(name="users")
 public class User {
+    
 
     private String authority;
 
     @NotBlank()
     @Email
     private String email;
-
 
     private boolean enabled = false;
     
@@ -35,6 +37,8 @@ public class User {
     @NotBlank()
     @Size( min = 1, max = 15 )
     @Pattern( regexp = "^\\w{1,}$" )
+    @Id
+    @Column(name="username")
     private String username;
 
     public User() {

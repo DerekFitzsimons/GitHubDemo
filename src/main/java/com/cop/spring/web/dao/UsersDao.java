@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Component( "usersDao" )
 public class UsersDao {
 
@@ -20,6 +22,10 @@ public class UsersDao {
      */
     private static final Logger LOGGER = Logger.getLogger( UsersDao.class.getName() );
 
+    
+    @Autowired
+    private SessionFactory sessionFactory;    
+    
     private NamedParameterJdbcTemplate jdbc;
 
     @Autowired
@@ -54,10 +60,10 @@ public class UsersDao {
     }
 
     public List<User> getAllUsers() {
-        String sql = "select * from users;";
-        List<User> output = jdbc.query( sql, BeanPropertyRowMapper.newInstance( User.class ) );
+        @SuppressWarnings( "unchecked" )
+        List<User> output = session().createQuery( "from users").list();
         return output == null
-               ? new ArrayList<User>()
+               ? new ArrayList<>()
                : output;
     }
 
@@ -67,4 +73,8 @@ public class UsersDao {
         this.jdbc = new NamedParameterJdbcTemplate( jdbc );
     }
 
+    
+    private Session session(){
+        return sessionFactory.getCurrentSession();
+    }
 }

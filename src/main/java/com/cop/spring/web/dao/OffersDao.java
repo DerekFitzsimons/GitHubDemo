@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
+import org.hibernate.SessionFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,7 +24,7 @@ public class OffersDao {
      * Logger
      */
     private static final Logger LOGGER = Logger.getLogger( OffersDao.class.getName() );
-
+    
     private NamedParameterJdbcTemplate jdbc;
 
     @Autowired
@@ -106,5 +107,9 @@ public class OffersDao {
         }
         return output;
     }
+    
+//    private Session session(){
+//        sessionFactory.get
+//    }
 
 }

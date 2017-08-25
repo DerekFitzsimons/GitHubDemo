@@ -24,18 +24,5 @@
     
         <jee:jndi-lookup id="dataSource" jndi-name="jdbc/spring" expected-type="javax.sql.DataSource"/>
         <tx:annotation-driven />
-    </beans>
-    
-    <beans profile="test">
-        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
-            <property name="dataSource" ref="dataSource" />
-        </bean>
-    
-        <context:annotation-config></context:annotation-config>
-    
-        <context:component-scan base-package="com.cop.spring.web" ></context:component-scan>
-    
-        <jee:jndi-lookup id="dataSource" jndi-name="jdbc/spring" expected-type="javax.sql.DataSource"/>
-        <tx:annotation-driven />
-    </beans>  
+    </beans> 
 </beans>

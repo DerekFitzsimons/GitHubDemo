@@ -54,7 +54,7 @@ public class LoginController {
     @RequestMapping( "/newAccount" )
     public String showCreateAccount( Model model ) {
 
-        model.addAttribute( "user", new User() );
+        model.addAttribute("user", new User() );
         return "createAccount";
     }
 
