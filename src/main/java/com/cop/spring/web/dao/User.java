@@ -5,6 +5,7 @@
  */
 package com.cop.spring.web.dao;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -13,9 +14,10 @@ import javax.validation.constraints.*;
  *
  * @author dfitzsimons
  */
-@Entity(name="users")
-public class User {
-    
+@Entity( name = "users" )
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String authority;
 
@@ -24,7 +26,7 @@ public class User {
     private String email;
 
     private boolean enabled = false;
-    
+
     @NotBlank()
     @Size( min = 3, max = 60 )
     private String name;
@@ -38,11 +40,20 @@ public class User {
     @Size( min = 1, max = 15 )
     @Pattern( regexp = "^\\w{1,}$" )
     @Id
-    @Column(name="username")
+    @Column( name = "username" )
     private String username;
 
     public User() {
 
+    }
+
+    public User( String username, String name, String email, String password, String authority, boolean enabled ) {
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
+        this.email = email;
+        this.enabled = enabled;
+        this.name = name;
     }
 
     public User( String username, String name, String email, String password, String authority ) {
@@ -53,7 +64,6 @@ public class User {
         this.enabled = true;
         this.name = name;
     }
-
 
     @Override
     public boolean equals( Object obj ) {
@@ -98,9 +108,11 @@ public class User {
     public void setEmail( String email ) {
         this.email = email;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName( String name ) {
         this.name = name;
     }
@@ -120,6 +132,7 @@ public class User {
     public void setUsername( String username ) {
         this.username = username;
     }
+
     @Override
     public int hashCode() {
         int hash = 3;

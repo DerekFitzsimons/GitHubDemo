@@ -38,6 +38,14 @@ public class UsersDaoTest {
     @Autowired
     public UsersDao usersDao;
 
+    private final User user1 = new User( "Mike", "Michael Mouse", "mike@home.ie", "Hell01", "ROLE_ADMIN", true );
+
+    private final User user2 = new User( "Rob", "Rob Roy", "rob@home.ie", "Hell02", "ROLE_USER" );
+
+    private final User user3 = new User( "John", "John Doe", "john.doe@home.ie", "Hell03", "ROLE_USER", false );
+
+    private final User user4 = new User( "George", "George of The Jungle", "george@home.ie", "Hell03", "ROLE_USER" );
+
     public UsersDaoTest() {
     }
 
@@ -72,11 +80,19 @@ public class UsersDaoTest {
         boolean result = usersDao.exists( username );
         assertEquals( expResult, result );
 
-        User user = new User( "username", "name","email@home.ie", "password", "ROLE_USER" );
-        usersDao.create( user );
+        usersDao.create( user1 );
+        usersDao.create( user2 );
+        usersDao.create( user3 );
+        usersDao.create( user4 );
 
         expResult = true;
-        result = usersDao.exists( username );
+        result = usersDao.exists( user1.getUsername() );
+        assertEquals( expResult, result );
+        result = usersDao.exists( user2.getUsername() );
+        assertEquals( expResult, result );
+        result = usersDao.exists( user3.getUsername() );
+        assertEquals( expResult, result );
+        result = usersDao.exists( user4.getUsername() );
         assertEquals( expResult, result );
     }
 
@@ -90,14 +106,18 @@ public class UsersDaoTest {
         List<User> result = usersDao.getAllUsers();
         assertEquals( expResult, result );
         assertEquals( expResult.size(), result.size() );
-
-        User user = new User( "username", "name","email@home.ie", "password", "ROLE_USER" );
-        usersDao.create( user );
+        usersDao.create( user1 );
+        usersDao.create( user2 );
+        usersDao.create( user3 );
+        usersDao.create( user4 );
 
         expResult = new ArrayList<>();
-        expResult.add( new User( "username", "name","email@home.ie", "password", "ROLE_USER" ) );
+        expResult.add( user1 );
+        expResult.add( user2 );
+        expResult.add( user3 );
+        expResult.add( user4 );
         result = usersDao.getAllUsers();
-        assertEquals( expResult, result );
+        assertEquals( expResult.size(), result.size() );
 
     }
 
@@ -106,11 +126,16 @@ public class UsersDaoTest {
      */
     @Test
     public void testCreate() {
-        System.out.println( "create" );
-        User user = new User( "username", "name","email@home.ie", "password", "ROLE_USER" );
-        boolean expResult = true;
-        boolean result = usersDao.create( user );
-        assertEquals( "User created", expResult, result );
+        System.out.println( "testCreate" );
+        usersDao.create( user1 );
+        usersDao.create( user2 );
+        usersDao.create( user3 );
+        usersDao.create( user4 );
+
+        assertTrue( usersDao.exists( user1.getUsername() ) );
+        assertTrue( usersDao.exists( user2.getUsername() ) );
+        assertTrue( usersDao.exists( user3.getUsername() ) );
+        assertTrue( usersDao.exists( user4.getUsername() ) );
     }
 
 }

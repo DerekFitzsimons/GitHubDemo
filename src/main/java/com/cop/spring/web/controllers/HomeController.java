@@ -24,21 +24,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger( HomeController.class );
-@Autowired
+
+    @Autowired
     private OffersService offersService;
 
     @RequestMapping( "/" )
     public String showHome( Model model, Principal principal ) {
         List<Offer> offers = offersService.getCurrent();
         model.addAttribute( "offers", offers );
-        
+
         boolean hasOffer = false;
-        
-        if(principal!= null){
-           hasOffer = offersService.hasOffer(principal.getName()); 
+
+        if( principal != null ) {
+            hasOffer = offersService.hasOffer( principal.getName() );
         }
-        
-        model.addAttribute("hasOffer",hasOffer);
+
+        model.addAttribute( "hasOffer", hasOffer );
 
         LOGGER.info( "Showing home page" );
         return "home";

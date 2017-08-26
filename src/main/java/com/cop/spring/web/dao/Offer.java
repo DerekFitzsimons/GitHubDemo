@@ -69,11 +69,13 @@ public class Offer {
     public void setUser( User user ) {
         this.user = user;
     }
-    public String getUsername(){
+
+    public String getUsername() {
         return user.getUsername();
     }
-    public void setUsername(String userName){
-        user.setUsername(userName);
+
+    public void setUsername( String userName ) {
+        user.setUsername( userName );
     }
 
     @Override
@@ -91,6 +93,5 @@ public class Offer {
         sb.append( "user=" ).append( user.getUsername() ).append( '}' );
         return sb.toString();
     }
-    
 
 }

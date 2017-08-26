@@ -2,10 +2,12 @@ package com.cop.spring.web.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 import javax.sql.DataSource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,48 +22,42 @@ public class UsersDao {
     /**
      * Logger
      */
-    private static final Logger LOGGER = Logger.getLogger( UsersDao.class.getName() );
+    private static final Logger LOGGER = LoggerFactory.getLogger( UsersDao.class.getName() );
 
-    
     @Autowired
-    private SessionFactory sessionFactory;    
-    
+    private SessionFactory sessionFactory;
+
     private NamedParameterJdbcTemplate jdbc;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public boolean create( User user ) {
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue( "username", user.getUsername() );
-        params.addValue( "password", passwordEncoder.encode( user.getPassword() ) );
-        params.addValue( "email", user.getEmail() );
-        params.addValue( "enabled", user.isEnabled() );
-        params.addValue( "authority", user.getAuthority() );
-        params.addValue( "name", user.getName() );
-        StringBuilder sql = new StringBuilder();
-        sql.append( "insert into users (username, name,email, password, enabled, authority) " );
-        sql.append( "values (:username, :name,:email, :password, :enabled, :authority);");
-
-        boolean output = jdbc.update( sql.toString(), params )>0;
-        LOGGER.info( "Creating user" );
-        return output;
-
+    public void create( User user ) {
+        session().save( user );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "User Created" );
+        }
     }
 
     public boolean exists( String username ) {
 
         String sql = "select count(*) from users where username=:username";
-
-        return jdbc.queryForObject( sql, new MapSqlParameterSource( "username", username ), Integer.class ) > 0;
+        boolean output
+                = jdbc.queryForObject( sql, new MapSqlParameterSource( "username", username ), Integer.class ) > 0;
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "User " + username + " exists" );
+        }
+        return output;
 
     }
 
     public List<User> getAllUsers() {
         @SuppressWarnings( "unchecked" )
-        List<User> output = session().createQuery( "from users").list();
+        List<User> output = session().createQuery( "from users" ).list();
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "All Users retrieved" );
+        }
         return output == null
                ? new ArrayList<>()
                : output;
@@ -69,12 +65,13 @@ public class UsersDao {
 
     @Autowired
     public void setDataSource( DataSource jdbc ) {
-        LOGGER.info( "Setting datasource" );
         this.jdbc = new NamedParameterJdbcTemplate( jdbc );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Users datasource set" );
+        }
     }
 
-    
-    private Session session(){
+    private Session session() {
         return sessionFactory.getCurrentSession();
     }
 }

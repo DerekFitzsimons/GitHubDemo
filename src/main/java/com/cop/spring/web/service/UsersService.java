@@ -22,10 +22,10 @@ public class UsersService {
     private UsersDao usersDao;
 
     public boolean exists( String username ) {
-        return usersDao.exists(username);
+        return usersDao.exists( username );
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured( "ROLE_ADMIN" )
     public List<User> getAllUsers() {
         return usersDao.getAllUsers();
     }
@@ -34,9 +34,8 @@ public class UsersService {
     public void setOffersDao( UsersDao offersDao ) {
         this.usersDao = offersDao;
     }
-    
-    
-    public void create(User user){
+
+    public void create( User user ) {
         usersDao.create( user );
     }
 }

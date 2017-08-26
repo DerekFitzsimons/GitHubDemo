@@ -65,11 +65,4 @@ public class OffersController {
         }
         return output;
     }
-
-    /*
-    @ExceptionHandler( DataAccessException.class )
-    public String handleDatabaseException( DataAccessException ex ) {
-        return "error";
-    }
-     */
 }

@@ -15,7 +15,7 @@
 
     <beans profile="test">	
         <context:property-placeholder location="com/cop/spring/web/config/jdbc.properties" />
-                <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
             <property name="dataSource" ref="dataSource" />
         </bean>
         <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -35,11 +35,9 @@
             <property name="packagesToScan">
                 <list>
                     <value>com.cop.spring.web.dao</value>
-                </list>
-                
+                </list>                
             </property>
         </bean>
         <tx:annotation-driven />
-    </beans>
-    
+    </beans>    
 </beans>

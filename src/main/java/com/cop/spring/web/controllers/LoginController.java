@@ -8,8 +8,10 @@ package com.cop.spring.web.controllers;
 import com.cop.spring.web.dao.User;
 import com.cop.spring.web.service.UsersService;
 import java.util.List;
-import java.util.logging.Logger;
+
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +29,7 @@ public class LoginController {
     /**
      * Logger
      */
-    private static final Logger LOGGER = Logger.getLogger( LoginController.class.getName() );
+    private static final Logger LOGGER = LoggerFactory.getLogger( LoginController.class.getName() );
 
     private UsersService usersService;
 
@@ -54,20 +56,25 @@ public class LoginController {
     @RequestMapping( "/newAccount" )
     public String showCreateAccount( Model model ) {
 
-        model.addAttribute("user", new User() );
+        model.addAttribute( "user", new User() );
         return "createAccount";
     }
 
     @RequestMapping( value = "/createAccount", method = RequestMethod.POST )
     public String createAccount( @Valid User user, BindingResult result ) {
         String output;
-        System.out.println( user );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Creating Account: " + user );
+        }
         if( !result.hasErrors() ) {
             output = "accountCreated";
             user.setEnabled( true );
             user.setAuthority( "ROLE_USER" );
 
             if( usersService.exists( user.getUsername() ) ) {
+                if( LOGGER.isDebugEnabled() ) {
+                    LOGGER.debug( "Duplicate username: " + user.getUsername() );
+                }
                 result.rejectValue( "username", "DuplicateKey.user.username" );
                 output = "createAccount";
 
@@ -82,11 +89,11 @@ public class LoginController {
     }
 
     @RequestMapping( "/admin" )
-    public String showAdmin( Model model ){
+    public String showAdmin( Model model ) {
 
-        List<User>users = usersService.getAllUsers();
-        
-        model.addAttribute("users",users);
+        List<User> users = usersService.getAllUsers();
+
+        model.addAttribute( "users", users );
         return "admin";
     }
 
