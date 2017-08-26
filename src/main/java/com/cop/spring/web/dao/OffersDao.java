@@ -3,7 +3,6 @@ package com.cop.spring.web.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +29,8 @@ public class OffersDao {
 
     @Autowired
     public void setDataSource( DataSource jdbc ) {
-        if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Setting datasource" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Setting datasource" );
         }
         this.jdbc = new NamedParameterJdbcTemplate( jdbc );
     }
@@ -44,8 +43,8 @@ public class OffersDao {
         if( output == null ) {
             output = new ArrayList<>();
         }
-        if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Getting offers" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Getting offers" );
         }
         return output;
     }
@@ -60,8 +59,8 @@ public class OffersDao {
         if( output == null ) {
             output = new ArrayList<>();
         }
-        if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Getting offers" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Getting offers" );
         }
         return output;
     }
@@ -69,8 +68,8 @@ public class OffersDao {
     public boolean update( Offer offer ) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
         boolean output = jdbc.update( "update offers set text=:text where id=:id", params ) == 1;
-        if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Update offer" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Update offer" );
         }
         return output;
     }
@@ -80,8 +79,8 @@ public class OffersDao {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
 
         boolean output = jdbc.update( "insert into offers (username,text ) values (:username, :text)", params ) == 1;
-        if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Create offer" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Create offer" );
         }
         return output;
 
@@ -91,16 +90,16 @@ public class OffersDao {
     public int[] create( List<Offer> offers ) {
 
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch( offers.toArray() );
-        if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Create offers" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Create offers" );
         }
         return jdbc.batchUpdate( "insert into offers (username,text ) values (:username, :text)", params );
     }
 
     public boolean delete( int id ) {
         MapSqlParameterSource params = new MapSqlParameterSource( "id", id );
-        if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Delete offer :"+id );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Delete offer :" + id );
         }
         return jdbc.update( "delete from offers where id=:id", params ) == 1;
     }
@@ -116,13 +115,13 @@ public class OffersDao {
             sql.append( "select * from offers, users " );
             sql.append( "where offers.username=users.username and users.enabled=true and id=:id" );
             output = jdbc.queryForObject( sql.toString(), params, new OfferRowMapper() );
-                    if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "Getting offer Id: "+id );
-        }
+            if( LOGGER.isDebugEnabled() ) {
+                LOGGER.debug( "Getting offer Id: " + id );
+            }
         } catch( EmptyResultDataAccessException ex ) {
-                    if(LOGGER.isDebugEnabled()){
-        LOGGER.debug( "No Matching offer Id: "+id );
-        }
+            if( LOGGER.isDebugEnabled() ) {
+                LOGGER.debug( "No Matching offer Id: " + id );
+            }
             output = null;
         }
         return output;
