@@ -2,9 +2,10 @@ package com.cop.spring.web.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.sql.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -22,13 +23,15 @@ public class OffersDao {
     /**
      * Logger
      */
-    private static final Logger LOGGER = Logger.getLogger( OffersDao.class.getName() );
+    private static final Logger LOGGER = LoggerFactory.getLogger( OffersDao.class.getName() );
 
     private NamedParameterJdbcTemplate jdbc;
 
     @Autowired
     public void setDataSource( DataSource jdbc ) {
-        LOGGER.info( "Setting datasource" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Setting datasource" );
+        }
         this.jdbc = new NamedParameterJdbcTemplate( jdbc );
     }
 
@@ -40,7 +43,9 @@ public class OffersDao {
         if( output == null ) {
             output = new ArrayList<>();
         }
-        LOGGER.info( "Getting offers" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Getting offers" );
+        }
         return output;
     }
 
@@ -54,14 +59,18 @@ public class OffersDao {
         if( output == null ) {
             output = new ArrayList<>();
         }
-        LOGGER.info( "Getting offers" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Getting offers" );
+        }
         return output;
     }
 
     public boolean update( Offer offer ) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
         boolean output = jdbc.update( "update offers set text=:text where id=:id", params ) == 1;
-        LOGGER.info( "Update offer" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Update offer" );
+        }
         return output;
     }
 
@@ -70,7 +79,9 @@ public class OffersDao {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource( offer );
 
         boolean output = jdbc.update( "insert into offers (username,text ) values (:username, :text)", params ) == 1;
-        LOGGER.info( "Create offer" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Create offer" );
+        }
         return output;
 
     }
