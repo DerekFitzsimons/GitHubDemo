@@ -1,9 +1,13 @@
 package com.cop.spring.web.dao;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.Size;
 
-public class Offer {
+
+public class Offer implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private int id;
 
@@ -69,6 +73,7 @@ public class Offer {
     public void setUser( User user ) {
         this.user = user;
     }
+    
     public String getUsername(){
         return user.getUsername();
     }

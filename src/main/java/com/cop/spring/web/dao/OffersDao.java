@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Component( "offersDao" )
 public class OffersDao {
 
@@ -91,7 +92,9 @@ public class OffersDao {
 
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch( offers.toArray() );
 
-        System.out.println( "Create offers" );
+        if( LOGGER.isDebugEnabled() ) {
+            LOGGER.debug( "Create offers" );
+        }
         return jdbc.batchUpdate( "insert into offers (username,text ) values (:username, :text)", params );
     }
 

@@ -45,7 +45,7 @@ public class OffersService {
         return output;
     }
 
-    @Autowired
+    @Autowired( required = true )
     public void setOffersDao( OffersDao offersDao ) {
         this.offersDao = offersDao;
     }
